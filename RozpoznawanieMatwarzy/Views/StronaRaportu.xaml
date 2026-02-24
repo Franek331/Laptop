@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RozpoznawanieMatwarzy.Views.StronaRaportu"
+             xmlns:viewmodels="clr-namespace:RozpoznawanieMatwarzy.ViewModels"
+             Title="📋 Raport"
+             BackgroundColor="#F5F5F5">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="15" Spacing="15">
+
+            <!-- DANE OSOBY -->
+            <Frame BorderColor="#2196F3" CornerRadius="12" Padding="15" BackgroundColor="White" HasShadow="True">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="👤 Dane Rozpoznanej Osoby" FontSize="16" FontAttributes="Bold" TextColor="#2196F3" />
+
+                    <Label Text="{Binding PelneImie}" FontSize="18" FontAttributes="Bold" TextColor="#333" />
+                    <Label Text="{Binding Pesel, StringFormat='PESEL: {0}'}" FontSize="12" TextColor="#666" />
+                    <Label Text="{Binding DataUrodzenia, StringFormat='Data ur.: {0:dd.MM.yyyy}'}" FontSize="12" TextColor="#666" />
+                    <Label Text="{Binding StringFormat='Pewność: {0:P0}'}" FontSize="12" TextColor="#FF9800" FontAttributes="Bold" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- SEKCJA: NOTATKA -->
+            <Frame BorderColor="#9C27B0" CornerRadius="12" Padding="15" BackgroundColor="White" HasShadow="True">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="📝 Notatka" FontSize="14" FontAttributes="Bold" TextColor="#9C27B0" />
+                    <Editor Text="{Binding Notatka}" 
+                            Placeholder="Wpisz dodatkowe informacje..." 
+                            HeightRequest="80"
+                            BackgroundColor="#FAFAFA"
+                            TextColor="#333"
+                            PlaceholderColor="#999" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- SEKCJA: DZIAŁANIA -->
+            <Frame BorderColor="#2196F3" CornerRadius="12" Padding="15" BackgroundColor="White" HasShadow="True">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="⚙️ Przeprowadzone Działania" FontSize="14" FontAttributes="Bold" TextColor="#2196F3" />
+                    <Editor Text="{Binding PrzeprowadzoneDialania}" 
+                            Placeholder="Np. Przekazano do jednostki, Pobranie próbki..." 
+                            HeightRequest="80"
+                            BackgroundColor="#FAFAFA"
+                            TextColor="#333"
+                            PlaceholderColor="#999" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- SEKCJA: MANDAT -->
+            <Frame BorderColor="#FF5722" CornerRadius="12" Padding="15" BackgroundColor="White" HasShadow="True">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="💰 Mandat" FontSize="14" FontAttributes="Bold" TextColor="#FF5722" />
+
+                    <!-- Checkbox - Czy mandat -->
+                    <CheckBox IsChecked="{Binding CzyMandat}" />
+                    <Label Text="Wystawiłem mandat" FontSize="12" TextColor="#333" />
+
+                    <!-- Panel mandatu - widoczny gdy CzyMandat = true -->
+                    <VerticalStackLayout Spacing="10" IsVisible="{Binding CzyMandat}">
+                        <Entry Text="{Binding KwotaMandatu}" 
+                               Placeholder="Kwota w PLN" 
+                               Keyboard="Numeric"
+                               BackgroundColor="#FAFAFA"
+                               TextColor="#333"
+ />
+
+                        <Entry Text="{Binding NumerMandata}" 
+                               Placeholder="Numer mandatu" 
+                               BackgroundColor="#FAFAFA"
+                               TextColor="#333"
+/>
+
+                        <Picker ItemsSource="{Binding ListaTypowMandatow}" 
+                                SelectedItem="{Binding TypMandata}"
+                                Title="Wybierz typ mandatu"
+                                BackgroundColor="#FAFAFA"
+                                TextColor="#333" />
+
+                        <Picker ItemsSource="{Binding ListaStatusowMandatu}" 
+                                SelectedItem="{Binding StatusMandata}"
+                                Title="Status mandatu"
+                                BackgroundColor="#FAFAFA"
+                                TextColor="#333" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- PRZYCISKI -->
+            <VerticalStackLayout Spacing="10">
+                <Button Text="💾 ZAPISZ RAPORT" 
+                        Command="{Binding ZapiszRaportCommand}"
+                        BackgroundColor="#4CAF50" 
+                        TextColor="White" 
+                        FontSize="14" 
+                        FontAttributes="Bold" 
+                        HeightRequest="50" 
+                        CornerRadius="12" />
+
+                <Button Text="📤 WYŚLIJ DO SYSTEMU" 
+                        Command="{Binding WyslijRaportCommand}"
+                        BackgroundColor="#2196F3" 
+                        TextColor="White" 
+                        FontSize="14" 
+                        FontAttributes="Bold" 
+                        HeightRequest="50" 
+                        CornerRadius="12" />
+
+                <Button Text="🗑️ WYCZYŚĆ" 
+                        Command="{Binding WyczyscCommand}"
+                        BackgroundColor="#999" 
+                        TextColor="White" 
+                        FontSize="14" 
+                        HeightRequest="45" 
+                        CornerRadius="10" />
+            </VerticalStackLayout>
+
+            <!-- STATUS -->
+            <Frame BorderColor="{Binding KolorStatusu}" CornerRadius="10" Padding="12" 
+                   BackgroundColor="#F0F0F0" HasShadow="False"
+                   IsVisible="{Binding CzyWidocznyStatus}">
+                <Label Text="{Binding Komunikat}" 
+                       TextColor="{Binding KolorStatusu}"
+                       FontSize="12"
+                       HorizontalTextAlignment="Center"
+                       FontAttributes="Bold" />
+            </Frame>
+
+            <!-- LOADING -->
+            <ActivityIndicator IsRunning="{Binding JestZajety}" 
+                               IsVisible="{Binding JestZajety}" 
+                               Color="#2196F3" 
+                               HeightRequest="30" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:RozpoznawanieMatwarzy.ViewModels"
+             xmlns:converters="clr-namespace:RozpoznawanieMatwarzy.Converters"
+             x:Class="RozpoznawanieMatwarzy.Views.StronaRozpoznawania"
+             Title="Rozpoznawanie">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <viewmodels:ModelRozpoznawania />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto,*" ColumnDefinitions="*" Padding="0" RowSpacing="0">
+
+        <!-- GÓRNY PANEL - ZDJĘCIE + INFORMACJE -->
+        <Border Grid.Row="0" Stroke="#000000" StrokeThickness="2" Padding="15">
+            <Grid ColumnDefinitions="0.35*,0.65*" RowSpacing="0" ColumnSpacing="15" BackgroundColor="White">
+
+                <!-- LEWA CZĘŚĆ - ZDJĘCIE -->
+                <VerticalStackLayout Grid.Column="0" Spacing="12">
+                    <Frame BorderColor="#2196F3" CornerRadius="15" Padding="0" 
+                           HeightRequest="280" BackgroundColor="White" HasShadow="True">
+                        <Image Source="{Binding WybraneZdjecie}" Aspect="AspectFill" HeightRequest="280" />
+                    </Frame>
+
+                    <Button Text="📸 Zdjęcie" Command="{Binding ZrobZdjecieCommand}" 
+                            BackgroundColor="#2196F3" TextColor="White" FontSize="14" 
+                            FontAttributes="Bold" HeightRequest="45" CornerRadius="10" Padding="10" />
+
+                    <Button Text="🖼️ Galeria" Command="{Binding WybierzZGaleriiCommand}" 
+                            BackgroundColor="#4CAF50" TextColor="White" FontSize="14" 
+                            FontAttributes="Bold" HeightRequest="45" CornerRadius="10" Padding="10" />
+                </VerticalStackLayout>
+
+                <!-- PRAWA CZĘŚĆ - INFORMACJE -->
+                <ScrollView Grid.Column="1">
+                    <VerticalStackLayout Spacing="12" Padding="10,0">
+
+                        <Label Text="🔍 Rozpoznawanie" FontSize="20" FontAttributes="Bold" 
+                               TextColor="#333" />
+
+                        <!-- Wynik rozpoznania - GŁÓWNA KARTA -->
+                        <Frame BorderColor="{Binding KolorWyniku}" CornerRadius="12" Padding="15" 
+                               BackgroundColor="#F9F9F9" HasShadow="True">
+                            <VerticalStackLayout Spacing="8">
+                                <Label Text="Rezultat:" FontSize="12" TextColor="#999" 
+                                       FontAttributes="Bold" />
+                                <Label Text="{Binding Wynik}" FontSize="14" TextColor="{Binding KolorWyniku}" 
+                                       LineBreakMode="WordWrap" FontAttributes="Bold" />
+                            </VerticalStackLayout>
+                        </Frame>
+
+                        <!-- STATUS BEZPIECZEŃSTWA - ALERT -->
+                        <Frame BorderColor="{Binding KolorBezpieczenstwa}" CornerRadius="12" Padding="15" 
+                               BackgroundColor="#F9F9F9" HasShadow="True"
+                               IsVisible="{Binding StatusBezpieczenstwa, Converter={StaticResource IsNotNullOrEmptyConverter}}">
+                            <VerticalStackLayout Spacing="8">
+                                <Label Text="🚨 Status Bezpieczeństwa:" FontSize="12" TextColor="#999" 
+                                       FontAttributes="Bold" />
+                                <Label Text="{Binding StatusBezpieczenstwa}" FontSize="16" 
+                                       TextColor="{Binding KolorBezpieczenstwa}" 
+                                       LineBreakMode="WordWrap" FontAttributes="Bold" />
+
+                                <!-- Informacja o poszukiwanym -->
+                                <Frame IsVisible="{Binding JestPoszukiwany}" 
+                                       BackgroundColor="#FFEBEE" BorderColor="#F44336" 
+                                       CornerRadius="8" Padding="10" Margin="0,10,0,0" HasShadow="True">
+                                    <VerticalStackLayout Spacing="6">
+                                        <Label Text="⚠️ OSOBA POSZUKIWANA!" FontSize="14" 
+                                               TextColor="#F44336" FontAttributes="Bold" 
+                                               HorizontalOptions="Center" />
+                                        <Label Text="" FontSize="11" 
+                                               TextColor="#F44336" HorizontalOptions="Center" />
+                                    </VerticalStackLayout>
+                                </Frame>
+
+                                <!-- Informacja o zastrzeżonym -->
+                                <Frame IsVisible="{Binding JestZastrzezony}" 
+                                       BackgroundColor="#FFF3E0" BorderColor="#FF9800" 
+                                       CornerRadius="8" Padding="10" Margin="0,10,0,0" HasShadow="True">
+                                    <VerticalStackLayout Spacing="6">
+                                        <Label Text="⚠️ OSOBA ZASTRZEŻONA" FontSize="14" 
+                                               TextColor="#FF9800" FontAttributes="Bold" 
+                                               HorizontalOptions="Center" />
+                                        <Label Text="{Binding PowidBezpieczenstwa}" FontSize="11" 
+                                               TextColor="#FF9800" HorizontalOptions="Center" 
+                                               LineBreakMode="WordWrap" />
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </VerticalStackLayout>
+                        </Frame>
+
+                        <!-- Status NFC -->
+                        <Frame BorderColor="#FF5722" CornerRadius="12" Padding="12" 
+                               IsVisible="{Binding StatusNfc, Converter={StaticResource IsNotNullOrEmptyConverter}}" 
+                               BackgroundColor="#FFF3E0" HasShadow="True">
+                            <VerticalStackLayout Spacing="6">
+                                <Label Text="📡 Status NFC:" FontSize="11" TextColor="#FF5722" 
+                                       FontAttributes="Bold" />
+                                <Label Text="{Binding StatusNfc}" FontSize="12" TextColor="#FF5722" 
+                                       LineBreakMode="WordWrap" />
+                            </VerticalStackLayout>
+                        </Frame>
+
+                        <Label Text="Wybierz zdjęcie lub zeskanuj NFC" FontSize="12" 
+                               TextColor="#999" HorizontalOptions="Center" 
+                               Margin="0,10,0,0" />
+
+                        <ActivityIndicator IsRunning="{Binding JestZajety}" 
+                                           IsVisible="{Binding JestZajety}" 
+                                           Color="#2196F3" HeightRequest="30" />
+                    </VerticalStackLayout>
+                </ScrollView>
+
+            </Grid>
+        </Border>
+
+        <!-- DOLNY PANEL - PRZYCISKI AKCJI -->
+        <Border Grid.Row="1" Stroke="#000000" StrokeThickness="2" Padding="15">
+            <ScrollView BackgroundColor="#F5F5F5">
+                <VerticalStackLayout Spacing="15" Padding="0">
+
+                    <!-- Główne przyciski -->
+                    <VerticalStackLayout Spacing="12">
+                        <Button Text="🔍 ROZPOZNAJ ZE ZDJĘCIA" Command="{Binding RozpoznajCommand}" 
+                                BackgroundColor="#9C27B0" TextColor="White" FontSize="16" 
+                                FontAttributes="Bold" HeightRequest="60" CornerRadius="12" Padding="15" />
+
+                        <Button Text="🎴 ODCZYTAJ Z NFC" Command="{Binding OdczytajZNfcCommand}" 
+                                BackgroundColor="#FF5722" TextColor="White" FontSize="16" 
+                                FontAttributes="Bold" HeightRequest="60" CornerRadius="12" Padding="15" />
+                    </VerticalStackLayout>
+
+                    <!-- Separator -->
+                    <BoxView Color="#DDD" HeightRequest="1" Margin="0,10,0,10" />
+
+                    <!-- Info -->
+                    <Label Text="💡 Wskazówka: Gdy osoba jest POSZUKIWANA, wynik pojawi się na CZERWONO" 
+                           FontSize="11" TextColor="#FF9800" FontAttributes="Italic"
+                           HorizontalOptions="Center" Margin="0,5,0,0" />
+
+                    <BoxView Color="#DDD" HeightRequest="2" Margin="0,15,0,15" />
+
+                    <!-- PRZYCISK DO RAPORTU - NOWY! -->
+                    <Button Text="📋 OTWÓRZ RAPORT" 
+                        Command="{Binding OtworzRaportCommand}"
+                        BackgroundColor="#FF5722" 
+                        TextColor="White" 
+                        FontSize="16" 
+                        FontAttributes="Bold" 
+                        HeightRequest="55" 
+                        CornerRadius="12" 
+                        Padding="15"
+                        IsEnabled="{Binding CzyMoznaOtworzycRaport}" />
+
+                    <Label Text="💡 Wskazówka: Kliknij RAPORT aby utworzyć dokument z danymi rozpoznanej osoby" 
+                       FontSize="11" 
+                       TextColor="#FF5722" 
+                       FontAttributes="Italic"
+                       HorizontalOptions="Center" 
+                       Margin="0,5,0,0" />          
+
+                </VerticalStackLayout>
+            </ScrollView>
+        </Border>
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,680 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\viewmodels\\modelrozpoznawania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\viewmodels\\modelrozpoznawania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\viewmodels\\modelrejestracji.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\viewmodels\\modelrejestracji.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\viewmodels\\modellogowania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\viewmodels\\modellogowania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\views\\stronalogowania.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\views\\stronalogowania.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\viewmodels\\modelraportu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\viewmodels\\modelraportu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\services\\serwisraportu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\services\\serwisraportu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\services\\serwisautoryzacji.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\services\\serwisautoryzacji.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\services\\raporthelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\services\\raporthelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\models\\historiaraportu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\models\\historiaraportu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\models\\loginresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\models\\loginresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\models\\osobazarejestrowana.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\models\\osobazarejestrowana.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\models\\odpowiedzrozpoznania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\models\\odpowiedzrozpoznania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\models\\raport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\models\\raport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\models\\uzytkownikinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\models\\uzytkownikinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\views\\stronalogowania.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\views\\stronalogowania.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\views\\stronaraportu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\views\\stronaraportu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\views\\stronaraportu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\views\\stronaraportu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\services\\serwisapitwarzy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\services\\serwisapitwarzy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\models\\statusnfc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\models\\statusnfc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\models\\statusbezpieczenstwa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\models\\statusbezpieczenstwa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\models\\odpowiedzraportu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\models\\odpowiedzraportu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\views\\stronarozpoznawania.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\views\\stronarozpoznawania.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\models\\odpowiedzrejestracji.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\models\\odpowiedzrejestracji.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\appshell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\appshell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\views\\stronarejestracji.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\views\\stronarejestracji.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\stale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\stale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\views\\stronaglowna.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\views\\stronaglowna.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\platforms\\android\\androidmanifest.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\platforms\\android\\androidmanifest.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\services\\serwisnfc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\services\\serwisnfc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\models\\danenfc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\models\\danenfc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\platforms\\android\\mainactivity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\platforms\\android\\mainactivity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\platforms\\android\\mainapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\platforms\\android\\mainapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\converters\\isnotnulloremptyconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\converters\\isnotnulloremptyconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\platforms\\android\\xml\\network_security_config.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\platforms\\android\\xml\\network_security_config.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Franio\\AppData\\Local\\Temp\\.vsdbgsrc\\59578356d1c52688c4ea696a7be271b4b3f92fbc\\Views_StronaRejestracji.xaml.sg.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|c:\\users\\franio\\desktop\\checkl\\franek331-project\\rozpoznawaniematwarzy\\views\\stronarejestracji.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A5C1D2-7455-4900-8F1C-E16AC1D174B2}|RozpoznawanieMatwarzy\\RozpoznawanieMatwarzy.csproj|solutionrelative:rozpoznawaniematwarzy\\views\\stronarejestracji.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 10,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "OsobaZarejestrowana.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\OsobaZarejestrowana.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Models\\OsobaZarejestrowana.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\OsobaZarejestrowana.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Models\\OsobaZarejestrowana.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T12:08:35.289Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "LoginResponse.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\LoginResponse.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Models\\LoginResponse.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\LoginResponse.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Models\\LoginResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T16:48:09.536Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "HistoriaRaportu.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\HistoriaRaportu.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Models\\HistoriaRaportu.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\HistoriaRaportu.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Models\\HistoriaRaportu.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T14:20:44.042Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RaportHelper.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Services\\RaportHelper.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Services\\RaportHelper.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Services\\RaportHelper.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Services\\RaportHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T14:47:11.029Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ModelRaportu.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\ViewModels\\ModelRaportu.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\ViewModels\\ModelRaportu.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\ViewModels\\ModelRaportu.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\ViewModels\\ModelRaportu.cs",
+              "ViewState": "AgIAAHUCAAAAAAAAAAAYwJkCAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T14:21:14.194Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ModelRozpoznawania.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\ViewModels\\ModelRozpoznawania.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\ViewModels\\ModelRozpoznawania.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\ViewModels\\ModelRozpoznawania.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\ViewModels\\ModelRozpoznawania.cs",
+              "ViewState": "AgIAAJsBAAAAAAAAAAAkwA8CAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T12:11:10.653Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ModelLogowania.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\ViewModels\\ModelLogowania.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\ViewModels\\ModelLogowania.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\ViewModels\\ModelLogowania.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\ViewModels\\ModelLogowania.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAA8wG0AAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T16:50:11.316Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SerwisRaportu.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Services\\SerwisRaportu.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Services\\SerwisRaportu.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Services\\SerwisRaportu.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Services\\SerwisRaportu.cs",
+              "ViewState": "AgIAAEsBAAAAAAAAAAAkwHABAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T14:21:48.941Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SerwisAutoryzacji.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Services\\SerwisAutoryzacji.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Services\\SerwisAutoryzacji.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Services\\SerwisAutoryzacji.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Services\\SerwisAutoryzacji.cs",
+              "ViewState": "AgIAAO0AAAAAAAAAAAAkwBIBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T16:49:19.226Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "StronaLogowania.xaml",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Views\\StronaLogowania.xaml",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Views\\StronaLogowania.xaml",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Views\\StronaLogowania.xaml",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Views\\StronaLogowania.xaml",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAowH4AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-29T16:54:15.961Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Raport.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\Raport.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Models\\Raport.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\Raport.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Models\\Raport.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAiwDYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T14:20:01.711Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "UzytkownikInfo.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\UzytkownikInfo.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Models\\UzytkownikInfo.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\UzytkownikInfo.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Models\\UzytkownikInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T16:48:38.016Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ModelRejestracji.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\ViewModels\\ModelRejestracji.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\ViewModels\\ModelRejestracji.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\ViewModels\\ModelRejestracji.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\ViewModels\\ModelRejestracji.cs",
+              "ViewState": "AgIAAC0BAAAAAAAAAAAswFEBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T12:10:20.081Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "OdpowiedzRozpoznania.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\OdpowiedzRozpoznania.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Models\\OdpowiedzRozpoznania.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\OdpowiedzRozpoznania.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Models\\OdpowiedzRozpoznania.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T12:08:05.94Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "SerwisApiTwarzy.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Services\\SerwisApiTwarzy.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Services\\SerwisApiTwarzy.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Services\\SerwisApiTwarzy.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Services\\SerwisApiTwarzy.cs",
+              "ViewState": "AgIAAOYAAAAAAAAAAAAiwAoBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T12:09:15.324Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "StronaRaportu.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Views\\StronaRaportu.xaml.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Views\\StronaRaportu.xaml.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Views\\StronaRaportu.xaml.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Views\\StronaRaportu.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T14:28:25.697Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "StronaRaportu.xaml",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Views\\StronaRaportu.xaml",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Views\\StronaRaportu.xaml",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Views\\StronaRaportu.xaml",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Views\\StronaRaportu.xaml",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAowIoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-30T14:28:19.868Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "StronaLogowania.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Views\\StronaLogowania.xaml.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Views\\StronaLogowania.xaml.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Views\\StronaLogowania.xaml.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Views\\StronaLogowania.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T17:00:02.533Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "StatusNFC.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\StatusNFC.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Models\\StatusNFC.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\StatusNFC.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Models\\StatusNFC.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-26T14:22:11.409Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "StatusBezpieczenstwa.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\StatusBezpieczenstwa.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Models\\StatusBezpieczenstwa.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\StatusBezpieczenstwa.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Models\\StatusBezpieczenstwa.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-26T14:22:29.355Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "OdpowiedzRaportu.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\OdpowiedzRaportu.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Models\\OdpowiedzRaportu.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\OdpowiedzRaportu.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Models\\OdpowiedzRaportu.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T14:20:24.123Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "StronaRozpoznawania.xaml",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Views\\StronaRozpoznawania.xaml",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Views\\StronaRozpoznawania.xaml",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Views\\StronaRozpoznawania.xaml",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Views\\StronaRozpoznawania.xaml",
+              "ViewState": "AgIAAIQAAAAAAAAAAIBJwKMAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-20T12:18:07.266Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "OdpowiedzRejestracji.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\OdpowiedzRejestracji.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Models\\OdpowiedzRejestracji.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\OdpowiedzRejestracji.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Models\\OdpowiedzRejestracji.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T12:07:51.077Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "AppShell.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\AppShell.xaml.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\AppShell.xaml.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\AppShell.xaml.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\AppShell.xaml.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBQAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T12:20:21.398Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "AppShell.xaml",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\AppShell.xaml",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\AppShell.xaml",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\AppShell.xaml",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\AppShell.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-20T12:19:19.581Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "AndroidManifest.xml",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Platforms\\Android\\AndroidManifest.xml",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Platforms\\Android\\AndroidManifest.xml",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Platforms\\Android\\AndroidManifest.xml",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Platforms\\Android\\AndroidManifest.xml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2026-01-20T12:28:18.142Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\App.xaml.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\App.xaml.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\App.xaml.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T12:19:27.368Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\MauiProgram.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\MauiProgram.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\MauiProgram.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T12:20:34.17Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Stale.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Stale.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Stale.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Stale.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Stale.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T12:21:53.244Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "StronaRejestracji.xaml",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Views\\StronaRejestracji.xaml",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Views\\StronaRejestracji.xaml",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Views\\StronaRejestracji.xaml",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Views\\StronaRejestracji.xaml",
+              "ViewState": "AgIAACoAAAAAAAAAAAAYwE0AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-20T12:14:13.157Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\App.xaml",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\App.xaml",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\App.xaml",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\App.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-20T12:17:35.777Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "StronaGlowna.xaml",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Views\\StronaGlowna.xaml",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Views\\StronaGlowna.xaml",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Views\\StronaGlowna.xaml",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Views\\StronaGlowna.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-29T18:03:55.982Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "SerwisNFC.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Services\\SerwisNFC.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Services\\SerwisNFC.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Services\\SerwisNFC.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Services\\SerwisNFC.cs",
+              "ViewState": "AgIAADYBAAAAAAAAAAAUwEgBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T12:40:42.096Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "MainActivity.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Platforms\\Android\\MainActivity.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Platforms\\Android\\MainActivity.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Platforms\\Android\\MainActivity.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Platforms\\Android\\MainActivity.cs",
+              "ViewState": "AgIAAGIAAAAAAAAAAADwv4gAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T19:11:54.453Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "DaneNFC.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\DaneNFC.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Models\\DaneNFC.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Models\\DaneNFC.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Models\\DaneNFC.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwB8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T12:34:24.035Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "MainApplication.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Platforms\\Android\\MainApplication.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Platforms\\Android\\MainApplication.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Platforms\\Android\\MainApplication.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Platforms\\Android\\MainApplication.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T19:42:41.204Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "Views_StronaRejestracji.xaml.sg.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\AppData\\Local\\Temp\\.vsdbgsrc\\59578356d1c52688c4ea696a7be271b4b3f92fbc\\Views_StronaRejestracji.xaml.sg.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\59578356d1c52688c4ea696a7be271b4b3f92fbc\\Views_StronaRejestracji.xaml.sg.cs",
+              "ToolTip": "C:\\Users\\Franio\\AppData\\Local\\Temp\\.vsdbgsrc\\59578356d1c52688c4ea696a7be271b4b3f92fbc\\Views_StronaRejestracji.xaml.sg.cs",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\59578356d1c52688c4ea696a7be271b4b3f92fbc\\Views_StronaRejestracji.xaml.sg.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAhwBkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T18:52:49.906Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "IsNotNullOrEmptyConverter.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Converters\\IsNotNullOrEmptyConverter.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Converters\\IsNotNullOrEmptyConverter.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Converters\\IsNotNullOrEmptyConverter.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Converters\\IsNotNullOrEmptyConverter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T18:49:54.105Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "network_security_config.xml",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Platforms\\Android\\xml\\network_security_config.xml",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Platforms\\Android\\xml\\network_security_config.xml",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Platforms\\Android\\xml\\network_security_config.xml",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Platforms\\Android\\xml\\network_security_config.xml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2026-01-20T19:20:11.176Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "StronaRejestracji.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Views\\StronaRejestracji.xaml.cs",
+              "RelativeDocumentMoniker": "RozpoznawanieMatwarzy\\Views\\StronaRejestracji.xaml.cs",
+              "ToolTip": "C:\\Users\\Franio\\Desktop\\Checkl\\Franek331-project\\RozpoznawanieMatwarzy\\Views\\StronaRejestracji.xaml.cs",
+              "RelativeToolTip": "RozpoznawanieMatwarzy\\Views\\StronaRejestracji.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T12:17:36.213Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

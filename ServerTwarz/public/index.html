@@ -1,0 +1,1960 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎭 Face Recognition - Enhanced</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-brand">🎭 Face Recognition+</div>
+        <ul class="navbar-menu">
+            <li><button class="nav-btn active" data-page="search">🔍 Wyszukiwanie</button></li>
+            <li><button class="nav-btn" data-page="management">⚙️ Zarządzanie</button></li>
+            <li><button class="nav-btn" data-page="history">📊 Historia</button></li>
+            <!-- <li><button class="nav-btn" data-page="reports">📋 Raporty</button></li> -->
+            <li><button class="nav-btn" data-page="logs">📋 Logi</button></li>
+            <li><a class="nav-btn" href="mandaty.html">Mandaty</a></li>
+            <li><button class="theme-toggle" id="themeToggle">🌙</button></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <!-- SEARCH PAGE -->
+        <div id="search" class="page active">
+            <div class="search-container">
+                <div class="search-header">
+                    <h1>🔍 Wyszukiwanie z NFC</h1>
+                    <p>Wyszukaj osobę po PESEL i zarządzaj jej statusem</p>
+                </div>
+
+                <div class="search-content">
+                    <div class="section">
+                        <h2>🔎 Szukaj</h2>
+                        <div class="input-group">
+                            <label for="peselInput">Numer PESEL:</label>
+                            <input type="text" id="peselInput" class="pesel-input" 
+                                   placeholder="00000000000" maxlength="11" inputmode="numeric">
+                        </div>
+                        <div class="button-group">
+                            <button class="btn-primary" id="searchBtn">🔍 Wyszukaj</button>
+                            <button class="btn-secondary" id="clearBtn">🗑️ Wyczyść</button>
+                        </div>
+                        <div class="info-card" id="infoCard"></div>
+                    </div>
+
+                    <div class="section">
+                        <h2>👤 Profil</h2>
+                        <div class="photo-container" id="photoContainer">
+                            <div class="photo-placeholder">📷</div>
+                        </div>
+                        <div id="profileInfo" style="display: none;">
+                            <div class="info-row">
+                                <span class="info-label">Imię:</span>
+                                <span class="info-value" id="imieValue"></span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Nazwisko:</span>
+                                <span class="info-value" id="nazwiskoValue"></span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">PESEL:</span>
+                                <span class="info-value" id="peselValue"></span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Data ur.:</span>
+                                <span class="info-value" id="dataValue"></span>
+                            </div>
+
+                            <div class="nfc-section">
+                                <h3>📡 NFC</h3>
+                                <div id="nfcStatus"></div>
+                                <div class="toggle-switch">
+                                    <label>Status:</label>
+                                    <label class="switch">
+                                        <input type="checkbox" id="nfcToggle">
+                                        <span class="slider"></span>
+                                    </label>
+                                    <span id="nfcStatusText">-</span>
+                                </div>
+                            </div>
+
+                            <div class="security-section">
+                                <h3>🚨 Status Bezpieczeństwa</h3>
+                                <div id="securityStatus"></div>
+                                <div class="security-options">
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="wantedCheck">
+                                        <label for="wantedCheck">🔴 Poszukiwany</label>
+                                    </div>
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="blockedCheck">
+                                        <label for="blockedCheck">🟠 Zastrzeżony</label>
+                                    </div>
+                                </div>
+                                <textarea id="reasonTextarea" placeholder="Powód zastrzeżenia (opcjonalnie)..."></textarea>
+                                <div class="btn-group">
+                                    <button class="btn-save" id="saveSecurityBtn">💾 Zapisz status</button>
+                                    <button class="btn-danger" id="clearSecurityBtn">🗑️ Wyczyść</button>
+                                </div>
+                            </div>
+
+                               <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid var(--border-color);">
+                                <h3 style="color: #2196F3; margin-bottom: 15px;">📋 Raporty osoby</h3>
+                                <div id="profileReportsStats" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px;">
+                                    <div style="background: rgba(33, 150, 243, 0.1); padding: 10px; border-radius: 8px; text-align: center;">
+                                        <div style="font-weight: bold; color: #2196F3; font-size: 18px;" id="profileTotalReports">0</div>
+                                        <div style="font-size: 12px; color: var(--text-secondary);">Łącznie</div>
+                                    </div>
+                                    <div style="background: rgba(244, 67, 54, 0.1); padding: 10px; border-radius: 8px; text-align: center;">
+                                        <div style="font-weight: bold; color: #f44336; font-size: 18px;" id="profileWithFine">0</div>
+                                        <div style="font-size: 12px; color: var(--text-secondary);">Z mandatem</div>
+                                    </div>
+                                    <div style="background: rgba(76, 175, 80, 0.1); padding: 10px; border-radius: 8px; text-align: center;">
+                                        <div style="font-weight: bold; color: #4caf50; font-size: 18px;" id="profileSubmitted">0</div>
+                                        <div style="font-size: 12px; color: var(--text-secondary);">Wysłane</div>
+                                    </div>
+                                </div>
+                                <div id="profileReportsContainer" style="background: var(--input-bg); border-radius: 12px; padding: 15px; border: 2px solid var(--border-color); max-height: 400px; overflow-y: auto;">
+                                    <div style="text-align: center; color: var(--text-secondary);">Brak raportów</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REPORTS PAGE -->
+        <div id="reports" class="page">
+            <div class="search-container">
+                <div class="search-header">
+                    <h1>📋 Raporty</h1>
+                    <p>Historia wygenerowanych raportów z rozpoznań</p>
+                </div>
+                <div style="padding: 40px;">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalReports">0</div>
+                            <div class="stat-label">Łącznie raportów</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="reportsWithFine">0</div>
+                            <div class="stat-label">Z mandatem</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="reportsSubmitted">0</div>
+                            <div class="stat-label">Wysłanych</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 15px;">
+                            <div style="flex: 1;">
+                                <input type="text" id="reportsSearchInput" 
+                                       placeholder="🔍 Szukaj po imieniu, nazwisku lub PESEL..." 
+                                       style="width: 100%; padding: 12px 20px; border: 2px solid var(--border-color); border-radius: 12px; font-size: 1em; background: var(--input-bg); color: var(--text-primary);">
+                            </div>
+                            <select id="reportsFilterType" style="padding: 12px 20px; border: 2px solid var(--border-color); border-radius: 12px; font-size: 1em; cursor: pointer; background: var(--input-bg); color: var(--text-primary);">
+                                <option value="all">📋 Wszystkie</option>
+                                <option value="withFine">💰 Z mandatem</option>
+                                <option value="withoutFine">📝 Bez mandatu</option>
+                                <option value="submitted">✅ Wysłane</option>
+                                <option value="new">🆕 Nowe</option>
+                            </select>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h2 style="margin: 0;">📜 Wyniki: <span id="reportsResultCount">0</span></h2>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="btn-primary" id="refreshReportsBtn">🔄 Odśwież</button>
+                                <button class="btn-danger" id="clearReportsBtn">🗑️ Wyczyść raporty</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="reportsContainer">
+                        <table class="history-table">
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>PESEL</th>
+                                    <th>Imię i Nazwisko</th>
+                                    <th>Mandat</th>
+                                    <th>Data</th>
+                                    <th>Akcja</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reportsTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REPORT DETAIL PAGE -->
+        <div id="reportDetail" class="page">
+            <div class="search-container">
+                <div class="search-header">
+                    <h1>📋 Szczegóły Raportu</h1>
+                    <p id="reportDetailSubtitle">Pełne dane raportu</p>
+                </div>
+
+                <div style="padding: 40px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+                        <!-- DANE OSOBY -->
+                        <div>
+                            <h2 style="color: #2196F3; margin-bottom: 20px;">👤 Dane Osoby</h2>
+                            <div style="background: var(--input-bg); border-radius: 12px; padding: 20px; border: 2px solid #E0E0E0;">
+                                <div class="info-row">
+                                    <span class="info-label">Imię i Nazwisko:</span>
+                                    <span class="info-value" id="reportDetailName">-</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">PESEL:</span>
+                                    <span class="info-value" id="reportDetailPesel">-</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Data urodzenia:</span>
+                                    <span class="info-value" id="reportDetailBirth">-</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Płeć:</span>
+                                    <span class="info-value" id="reportDetailGender">-</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Pewność rozpoznania:</span>
+                                    <span class="info-value" id="reportDetailCertainty">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ZDJĘCIE -->
+
+                    </div>
+
+                    <!-- NOTATKA -->
+                    <div style="margin-bottom: 30px;">
+                        <h2 style="color: #9C27B0; margin-bottom: 15px;">📝 Notatka Operatora</h2>
+                        <div style="background: var(--input-bg); border-radius: 12px; padding: 20px; border: 2px solid #E0E0E0; min-height: 100px; white-space: pre-wrap; color: var(--text-primary);" id="reportDetailNote">-</div>
+                    </div>
+
+                    <!-- DZIAŁANIA -->
+                    <div style="margin-bottom: 30px;">
+                        <h2 style="color: #2196F3; margin-bottom: 15px;">⚙️ Przeprowadzone Działania</h2>
+                        <div style="background: var(--input-bg); border-radius: 12px; padding: 20px; border: 2px solid #E0E0E0; min-height: 100px; white-space: pre-wrap; color: var(--text-primary);" id="reportDetailActions">-</div>
+                    </div>
+
+                    <!-- MANDAT -->
+                    <div id="reportDetailFineSection" style="margin-bottom: 30px; display: none;">
+                        <h2 style="color: #FF5722; margin-bottom: 15px;">💰 Informacje o Mandacie</h2>
+                        <div style="background: var(--input-bg); border-radius: 12px; padding: 20px; border: 2px solid #FF5722;">
+                            <div class="info-row">
+                                <span class="info-label">Kwota:</span>
+                                <span class="info-value" id="reportDetailFineAmount">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Numer mandatu:</span>
+                                <span class="info-value" id="reportDetailFineNumber">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Typ mandatu:</span>
+                                <span class="info-value" id="reportDetailFineType">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Status:</span>
+                                <span class="info-value" id="reportDetailFineStatus">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- METADATA -->
+                    <div style="margin-bottom: 30px;">
+                        <h2 style="color: #666; margin-bottom: 15px;">ℹ️ Informacje Dodatkowe</h2>
+                        <div style="background: var(--input-bg); border-radius: 12px; padding: 20px; border: 2px solid #E0E0E0;">
+                            <div class="info-row">
+                                <span class="info-label">ID Raportu:</span>
+                                <span class="info-value" id="reportDetailId">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Data raportu:</span>
+                                <span class="info-value" id="reportDetailDate">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Status:</span>
+                                <span class="info-value" id="reportDetailStatus">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PRZYCISKI -->
+                    <div style="display: flex; gap: 10px; margin-top: 30px;">
+                        <button class="btn-primary" id="printReportBtn" style="flex: 0.5;">🖨️ PDF</button>
+                        <button class="btn-danger" id="deleteReportBtn" style="flex: 0.5;">🗑️ Usuń</button>
+                        <button class="btn-secondary" id="backToReportsBtn" style="flex: 0.5;">⬅️ Powrót</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MANAGEMENT PAGE -->
+        <div id="management" class="page">
+            <div class="search-container">
+                <div class="search-header">
+                    <h1>⚙️ Zarządzanie Osobami</h1>
+                    <p>Przegląd wszystkich osób z statusami NFC i bezpieczeństwa</p>
+                </div>
+                <div style="padding: 40px;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.95em;">
+                        <thead>
+                            <tr style="background: var(--input-bg);">
+                                <th style="padding: 12px; text-align: left; border-bottom: 2px solid var(--border-color);">Imię</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 2px solid var(--border-color);">Nazwisko</th>
+                                <th style="padding: 12px; text-align: center; border-bottom: 2px solid var(--border-color);">NFC</th>
+                                <th style="padding: 12px; text-align: center; border-bottom: 2px solid var(--border-color);">Status</th>
+                                <th style="padding: 12px; text-align: center; border-bottom: 2px solid var(--border-color);">Kolor</th>
+                            </tr>
+                        </thead>
+                        <tbody id="managementTable"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- HISTORY PAGE -->
+        <div id="history" class="page">
+            <div class="search-container">
+                <div class="search-header">
+                    <h1>📊 Historia Wyszukiwania</h1>
+                    <p>Ostatnie 100 wyszukiwań w systemie</p>
+                </div>
+                <div style="padding: 40px;">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalSearches">0</div>
+                            <div class="stat-label">Łącznie wyszukiwań</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="foundSearches">0</div>
+                            <div class="stat-label">Znalezionych</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="notFoundSearches">0</div>
+                            <div class="stat-label">Nie znalezionych</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 15px;">
+                            <div style="flex: 1;">
+                                <input type="text" id="historySearchInput" 
+                                       placeholder="🔍 Szukaj po imieniu, nazwisku lub PESEL..." 
+                                       style="width: 100%; padding: 12px 20px; border: 2px solid var(--border-color); border-radius: 12px; font-size: 1em; background: var(--input-bg); color: var(--text-primary);">
+                            </div>
+                            <select id="historyFilterType" style="padding: 12px 20px; border: 2px solid var(--border-color); border-radius: 12px; font-size: 1em; cursor: pointer; background: var(--input-bg); color: var(--text-primary);">
+                                <option value="all">📋 Wszystkie</option>
+                                <option value="found">✅ Znalezione</option>
+                                <option value="notfound">❌ Nie znalezione</option>
+                                <option value="web">🌐 Web</option>
+                                <option value="mobile">📱 Mobile</option>
+                            </select>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h2 style="margin: 0;">📜 Wyniki: <span id="resultCount">0</span></h2>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="btn-primary" id="refreshHistoryBtn">🔄 Odśwież</button>
+                                <button class="btn-danger" id="clearHistoryBtn">🗑️ Wyczyść historię</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="historyContainer">
+                        <table class="history-table">
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>PESEL</th>
+                                    <th>Imię i Nazwisko</th>
+                                    <th>Typ wyszukiwania</th>
+                                    <th>Data i czas</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historyTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOGS PAGE -->
+        <div id="logs" class="page">
+            <div class="search-container">
+                <div class="search-header">
+                    <h1>📋 Logi Aktywności</h1>
+                    <p>Szczegółowa historia wszystkich akcji w systemie</p>
+                </div>
+                <div style="padding: 40px;">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalLogs">0</div>
+                            <div class="stat-label">Łącznie logów</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="todayLogs">0</div>
+                            <div class="stat-label">Dzisiaj</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 15px;">
+                            <div style="flex: 1;">
+                                <input type="text" id="logsSearchInput" 
+                                       placeholder="🔍 Szukaj w logach..." 
+                                       style="width: 100%; padding: 12px 20px; border: 2px solid var(--border-color); border-radius: 12px; font-size: 1em; background: var(--input-bg); color: var(--text-primary);">
+                            </div>
+                            <select id="logsFilterType" style="padding: 12px 20px; border: 2px solid var(--border-color); border-radius: 12px; font-size: 1em; cursor: pointer; background: var(--input-bg); color: var(--text-primary);">
+                                <option value="all">📋 Wszystkie akcje</option>
+                                <option value="search">🔍 Wyszukiwania</option>
+                                <option value="register">➕ Rejestracje</option>
+                                <option value="security">🚨 Zmiany statusu</option>
+                                <option value="nfc">📡 NFC</option>
+                                <option value="delete">🗑️ Usunięcia</option>
+                            </select>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h2 style="margin: 0;">📜 Wyniki: <span id="logsResultCount">0</span></h2>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="btn-primary" id="refreshLogsBtn">🔄 Odśwież</button>
+                                <button class="btn-danger" id="clearLogsBtn">🗑️ Wyczyść logi</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="logsContainer">
+                        <table class="logs-table">
+                            <thead>
+                                <tr>
+                                    <th>Typ akcji</th>
+                                    <th>PESEL</th>
+                                    <th>Nazwa</th>
+                                    <th>Szczegóły</th>
+                                    <th>Użytkownik</th>
+                                    <th>Data i czas</th>
+                                </tr>
+                            </thead>
+                            <tbody id="logsTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-info {
+            background: #2196F3;
+            color: white;
+        }
+
+        .btn-info:hover {
+            background: #1976D2;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .empty-state h3 {
+            margin: 20px 0 10px;
+            color: var(--text-primary);
+        }
+
+        .stat-card {
+            background: var(--input-bg);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid var(--border-color);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2196F3;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #2196F3;
+            min-width: 150px;
+        }
+
+        .info-value {
+            color: var(--text-primary);
+            text-align: right;
+            flex: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .badge-red {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .badge-green {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--input-bg);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .history-table thead {
+            background: var(--border-color);
+        }
+
+        .history-table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .history-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .history-table tbody tr:hover {
+            background: rgba(33, 150, 243, 0.1);
+        }
+
+        .logs-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--input-bg);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .logs-table thead {
+            background: var(--border-color);
+        }
+
+        .logs-table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .logs-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .logs-table tbody tr:hover {
+            background: rgba(33, 150, 243, 0.1);
+        }
+
+        .status-icon {
+            font-size: 18px;
+        }
+
+        .action-badge {
+            display: inline-block;
+            background: #f0f0f0;
+            color: #333;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .search-type-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .search-type-web {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .search-type-mobile {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+    </style>
+
+    <script>
+        const API_URL = 'http://192.168.88.253:5000';
+        let currentPesel = null;
+        let allHistoryData = [];
+        let allLogsData = [];
+        let allReportsData = [];
+        let currentReportId = null;
+
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        });
+
+        // Navigation
+        document.querySelectorAll('[data-page]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const pageName = e.target.dataset.page;
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                document.getElementById(pageName).classList.add('active');
+                
+                if (pageName === 'management') {
+                    loadManagement();
+                } else if (pageName === 'history') {
+                    loadHistory();
+                } else if (pageName === 'logs') {
+                    loadLogs();
+                } else if (pageName === 'reports') {
+                    loadReports();
+                }
+            });
+        });
+
+        function showInfo(message, type = 'loading') {
+            const card = document.getElementById('infoCard');
+            card.className = `info-card ${type}`;
+            card.style.display = 'block';
+            card.innerHTML = message;
+        }
+
+        async function searchPESEL() {
+            const pesel = document.getElementById('peselInput').value.trim();
+            if (!pesel || pesel.length !== 11) {
+                showInfo('❌ PESEL musi zawierać 11 cyfr', 'error');
+                return;
+            }
+
+            showInfo('🔄 Wyszukiwanie...', 'loading');
+            try {
+                const response = await fetch(`${API_URL}/api/faces/${pesel}`);
+                const data = await response.json();
+
+                if (data.Sukces) {
+                    currentPesel = pesel;
+                    displayProfile(data.Osoba);
+                    loadNFCStatus(pesel);
+                    loadSecurityStatus(pesel);
+                    showInfo('✅ Osoba znaleziona!', 'success');
+                } else {
+                    showInfo('❌ Osoba nie znaleziona', 'error');
+                }
+            } catch (error) {
+                showInfo('❌ Błąd: ' + error.message, 'error');
+            }
+        }
+
+        function displayProfile(osoba) {
+            document.getElementById('profileInfo').style.display = 'block';
+            document.getElementById('imieValue').textContent = osoba.Imie;
+            document.getElementById('nazwiskoValue').textContent = osoba.Nazwisko;
+            document.getElementById('peselValue').textContent = osoba.Pesel;
+            document.getElementById('dataValue').textContent = new Date(osoba.DataUrodzenia).toLocaleDateString('pl-PL');
+            
+            if (osoba.SciezkaZdjecia) {
+                document.getElementById('photoContainer').innerHTML = 
+                    `<img src="${API_URL}${osoba.SciezkaZdjecia}" alt="Zdjęcie">`;
+            }
+            loadProfileReports(osoba.Pesel);
+        }
+
+        async function loadNFCStatus(pesel) {
+            try {
+                const response = await fetch(`${API_URL}/api/nfc/status/${pesel}`);
+                const data = await response.json();
+                
+                const nfc = data.NFC;
+                document.getElementById('nfcStatus').innerHTML = nfc.Zarejestrowany 
+                    ? `<div class="info-row"><span class="info-label">UID:</span><span class="info-value">${nfc.NfcUid}</span></div>`
+                    : '<span style="color: #999;">❌ NFC nie zarejestrowany</span>';
+                
+                document.getElementById('nfcToggle').checked = nfc.Aktywny;
+                document.getElementById('nfcStatusText').textContent = nfc.Aktywny ? '✅ Aktywny' : '❌ Nieaktywny';
+                
+                document.getElementById('nfcToggle').onchange = async (e) => {
+                    await toggleNFC(pesel, e.target.checked);
+                };
+            } catch (error) {
+                console.error('Błąd NFC:', error);
+            }
+        }
+
+        async function toggleNFC(pesel, active) {
+            try {
+                const response = await fetch(`${API_URL}/api/nfc/toggle/${pesel}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ active })
+                });
+                const data = await response.json();
+                
+                if (data.Sukces) {
+                    document.getElementById('nfcStatusText').textContent = active ? '✅ Aktywny' : '❌ Nieaktywny';
+                    showInfo(`✅ NFC ${active ? 'włączony' : 'wyłączony'}`, 'success');
+                }
+            } catch (error) {
+                showInfo('❌ Błąd: ' + error.message, 'error');
+            }
+        }
+
+        async function loadSecurityStatus(pesel) {
+            try {
+                const response = await fetch(`${API_URL}/api/security/status/${pesel}`);
+                const data = await response.json();
+                const status = data.Status;
+                
+                document.getElementById('securityStatus').innerHTML = `
+                    <div class="info-row">
+                        <span class="info-label">Status:</span>
+                        <span class="info-value"><span class="badge badge-${status.KolorAlertu === 'red' ? 'red' : status.KolorAlertu === 'orange' ? 'orange' : 'green'}">
+                            ${status.Poszukiwany ? '🔴 POSZUKIWANY' : status.Zastrzeżony ? '🟠 ZASTRZEŻONY' : '✅ AKTYWNY'}
+                        </span></span>
+                    </div>
+                    ${status.Powód ? `<div class="info-row"><span class="info-label">Powód:</span><span class="info-value">${status.Powód}</span></div>` : ''}
+                `;
+                
+                document.getElementById('wantedCheck').checked = status.Poszukiwany;
+                document.getElementById('blockedCheck').checked = status.Zastrzeżony;
+                document.getElementById('reasonTextarea').value = status.Powód || '';
+            } catch (error) {
+                console.error('Błąd Security:', error);
+            }
+        }
+
+        document.getElementById('saveSecurityBtn').addEventListener('click', async () => {
+            if (!currentPesel) return;
+            
+            const is_wanted = document.getElementById('wantedCheck').checked;
+            const is_blocked = document.getElementById('blockedCheck').checked;
+            const reason = document.getElementById('reasonTextarea').value;
+
+            try {
+                const response = await fetch(`${API_URL}/api/security/status/${currentPesel}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ is_wanted, is_blocked, reason })
+                });
+                const data = await response.json();
+                
+                if (data.Sukces) {
+                    showInfo('✅ Status bezpieczeństwa zaktualizowany', 'success');
+                    loadSecurityStatus(currentPesel);
+                }
+            } catch (error) {
+                showInfo('❌ Błąd: ' + error.message, 'error');
+            }
+        });
+
+        document.getElementById('clearSecurityBtn').addEventListener('click', async () => {
+            if (!currentPesel) return;
+
+            try {
+                const response = await fetch(`${API_URL}/api/security/status/${currentPesel}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ is_wanted: false, is_blocked: false, reason: '' })
+                });
+                const data = await response.json();
+                
+                if (data.Sukces) {
+                    showInfo('✅ Status wyczyszczony', 'success');
+                    loadSecurityStatus(currentPesel);
+                }
+            } catch (error) {
+                showInfo('❌ Błąd: ' + error.message, 'error');
+            }
+        });
+
+        async function loadManagement() {
+            try {
+                const response = await fetch(`${API_URL}/api/faces-with-security`);
+                const faces = await response.json();
+                
+                const table = document.getElementById('managementTable');
+                table.innerHTML = faces.map(f => `
+                    <tr style="border-bottom: 1px solid var(--border-color);">
+                        <td style="padding: 12px; color: var(--text-primary);">${f.Imie}</td>
+                        <td style="padding: 12px; color: var(--text-primary);">${f.Nazwisko}</td>
+                        <td style="padding: 12px; text-align: center;">
+                            ${f.NFC.Zarejestrowany ? (f.NFC.Aktywny ? '✅' : '❌') : '⊘'}
+                        </td>
+                        <td style="padding: 12px; text-align: center;">
+                            ${f.Security.Poszukiwany ? '🔴 POSZUKIWANY' : f.Security.Zastrzeżony ? '🟠 ZASTRZEŻONY' : '✅'}
+                        </td>
+                        <td style="padding: 12px; text-align: center;">
+                            <span class="badge badge-${f.Security.KolorAlertu}"></span>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                console.error('Błąd loadManagement:', error);
+            }
+        }
+
+        // =====================================================
+        // 📋 RAPORTY
+        // =====================================================
+
+        async function loadReports(searchPesel = null) {
+            try {
+                let url = `${API_URL}/api/reports`;
+                if (searchPesel) {
+                    url = `${API_URL}/api/reports/person/${searchPesel}`;
+                }
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.Raporty) {
+                    allReportsData = data.Raporty;
+                } else if (data.Sukces && Array.isArray(data.Raporty || data)) {
+                    allReportsData = data.Raporty || data;
+                } else {
+                    allReportsData = [];
+                }
+                
+                updateReportsStats();
+                displayReports(allReportsData);
+            } catch (error) {
+                console.error('Błąd loadReports:', error);
+                document.getElementById('reportsContainer').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">⚠️</div>
+                        <h3>Błąd ładowania raportów</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function updateReportsStats() {
+            const total = allReportsData.length;
+            const withFine = allReportsData.filter(r => r.czyMandat || r.CzyMandat).length;
+            const submitted = allReportsData.filter(r => (r.status || r.Status) === 'Wysłany').length;
+            
+            document.getElementById('totalReports').textContent = total;
+            document.getElementById('reportsWithFine').textContent = withFine;
+            document.getElementById('reportsSubmitted').textContent = submitted;
+        }
+
+        function displayReports(reports) {
+            if (!reports || reports.length === 0) {
+                document.getElementById('reportsContainer').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📭</div>
+                        <h3>Brak raportów</h3>
+                        <p>Nie znaleziono żadnych raportów spełniających kryteria wyszukiwania.</p>
+                    </div>
+                `;
+                document.getElementById('reportsResultCount').textContent = '0';
+                return;
+            }
+            
+            document.getElementById('reportsContainer').innerHTML = `
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>PESEL</th>
+                            <th>Imię i Nazwisko</th>
+                            <th>Mandat</th>
+                            <th>Data</th>
+                            <th>Akcja</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reportsTable"></tbody>
+                </table>
+            `;
+            
+            const tableBody = document.getElementById('reportsTable');
+            
+            tableBody.innerHTML = reports.map(report => {
+                const pesel = report.pesel || report.Pesel;
+                const imie = report.imie || report.Imie;
+                const nazwisko = report.nazwisko || report.Nazwisko;
+                const czyMandat = report.czyMandat || report.CzyMandat;
+                const status = report.status || report.Status;
+                const dataRaportu = new Date(report.dataRaportu || report.DataRaportu);
+                
+                const formattedDate = dataRaportu.toLocaleString('pl-PL', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                const statusIcon = status === 'Wysłany' 
+                    ? '<span class="status-icon" style="color: #4caf50;">✅</span>'
+                    : '<span class="status-icon" style="color: #ff9800;">⏳</span>';
+                
+                const mandatBadge = czyMandat
+                    ? '<span class="badge badge-red">💰 Tak</span>'
+                    : '<span class="badge badge-green">❌ Nie</span>';
+                
+                return `
+                    <tr>
+                        <td style="text-align: center;">${statusIcon}</td>
+                        <td style="font-family: 'Courier New', monospace; font-weight: bold;">${pesel}</td>
+                        <td>${imie} ${nazwisko}</td>
+                        <td style="text-align: center;">${mandatBadge}</td>
+                        <td style="color: var(--text-secondary);">${formattedDate}</td>
+                        <td>
+                            <button class="btn-small btn-info" onclick="viewReportDetail('${report.id || report.Id}')">👁️ Podgląd</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+            
+            document.getElementById('reportsResultCount').textContent = reports.length;
+        }
+
+        function filterReports() {
+            const searchTerm = document.getElementById('reportsSearchInput').value.toLowerCase().trim();
+            const filterType = document.getElementById('reportsFilterType').value;
+            
+            let filtered = [...allReportsData];
+            
+            if (filterType === 'withFine') {
+                filtered = filtered.filter(r => r.czyMandat || r.CzyMandat);
+            } else if (filterType === 'withoutFine') {
+                filtered = filtered.filter(r => !(r.czyMandat || r.CzyMandat));
+            } else if (filterType === 'submitted') {
+                filtered = filtered.filter(r => (r.status || r.Status) === 'Wysłany');
+            } else if (filterType === 'new') {
+                filtered = filtered.filter(r => (r.status || r.Status) !== 'Wysłany');
+            }
+            
+            if (searchTerm) {
+                filtered = filtered.filter(report => {
+                    const pesel = (report.pesel || report.Pesel || '').toLowerCase();
+                    const imie = (report.imie || report.Imie || '').toLowerCase();
+                    const nazwisko = (report.nazwisko || report.Nazwisko || '').toLowerCase();
+                    const fullName = `${imie} ${nazwisko}`.trim();
+                    
+                    return pesel.includes(searchTerm) || 
+                           imie.includes(searchTerm) || 
+                           nazwisko.includes(searchTerm) ||
+                           fullName.includes(searchTerm);
+                });
+            }
+            
+            displayReports(filtered);
+        }
+
+        function viewReportDetail(reportId) {
+            const report = allReportsData.find(r => (r.id || r.Id) === reportId);
+            if (!report) {
+                alert('❌ Raport nie znaleziony');
+                return;
+            }
+            
+            currentReportId = reportId;
+            
+            // Dane osoby
+            const imie = report.imie || report.Imie || '';
+            const nazwisko = report.nazwisko || report.Nazwisko || '';
+            document.getElementById('reportDetailName').textContent = `${imie} ${nazwisko}`;
+            document.getElementById('reportDetailPesel').textContent = report.pesel || report.Pesel || '-';
+            
+            const dataBirth = new Date(report.dataUrodzenia || report.DataUrodzenia);
+            document.getElementById('reportDetailBirth').textContent = dataBirth.toLocaleDateString('pl-PL');
+            
+            document.getElementById('reportDetailGender').textContent = report.plec || report.Plec || '-';
+            
+            const pewnosc = (report.pewnosc || report.Pewnosc || 0) * 100;
+            document.getElementById('reportDetailCertainty').textContent = `${pewnosc.toFixed(2)}%`;
+            
+            // Notatka
+            document.getElementById('reportDetailNote').textContent = report.notatka || report.Notatka || '-';
+            
+            // Działania
+            document.getElementById('reportDetailActions').textContent = report.przeprowadzoneDialania || report.PrzeprowadzoneDialania || '-';
+            
+            // Mandat
+            const czyMandat = report.czyMandat || report.CzyMandat;
+            const fineSection = document.getElementById('reportDetailFineSection');
+            
+            if (czyMandat) {
+                fineSection.style.display = 'block';
+                document.getElementById('reportDetailFineAmount').textContent = `${report.kwotaMandatu || report.KwotaMandatu || '-'} PLN`;
+                document.getElementById('reportDetailFineNumber').textContent = report.numerMandata || report.NumerMandata || '-';
+                document.getElementById('reportDetailFineType').textContent = report.typMandata || report.TypMandata || '-';
+                document.getElementById('reportDetailFineStatus').textContent = report.statusMandata || report.StatusMandata || '-';
+            } else {
+                fineSection.style.display = 'none';
+            }
+            
+            // Metadata
+            document.getElementById('reportDetailId').textContent = report.id || report.Id || '-';
+            
+            const dataRaportu = new Date(report.dataRaportu || report.DataRaportu);
+            document.getElementById('reportDetailDate').textContent = dataRaportu.toLocaleString('pl-PL', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            document.getElementById('reportDetailStatus').textContent = report.status || report.Status || '-';
+            
+            // Zmiana strony
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('reportDetail').classList.add('active');
+            
+            const reportBtn = Array.from(document.querySelectorAll('[data-page]')).find(b => b.dataset.page === 'reports');
+            if (reportBtn) reportBtn.classList.add('active');
+        }
+
+        // Eksport do PDF
+        function exportReportToPDF(reportId) {
+            const report = allReportsData.find(r => (r.id || r.Id) === reportId);
+            if (!report) {
+                alert('❌ Raport nie znaleziony');
+                return;
+            }
+            
+            const imie = report.imie || report.Imie || '';
+            const nazwisko = report.nazwisko || report.Nazwisko || '';
+            const pesel = report.pesel || report.Pesel || '';
+            const dataBirth = new Date(report.dataUrodzenia || report.DataUrodzenia).toLocaleDateString('pl-PL');
+            const plec = report.plec || report.Plec || '-';
+            const pewnosc = ((report.pewnosc || report.Pewnosc || 0) * 100).toFixed(2);
+            
+            const notatka = report.notatka || report.Notatka || '-';
+            const dzialania = report.przeprowadzoneDialania || report.PrzeprowadzoneDialania || '-';
+            const czyMandat = report.czyMandat || report.CzyMandat;
+            
+            const dataRaportu = new Date(report.dataRaportu || report.DataRaportu).toLocaleString('pl-PL');
+            const status = report.status || report.Status || '-';
+            
+            // Stwórz element HTML do druku
+            const printContent = `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Raport - ${pesel}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #2196F3;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            margin: 0;
+            color: #2196F3;
+            font-size: 28px;
+        }
+        .header p {
+            margin: 5px 0 0 0;
+            color: #666;
+            font-size: 14px;
+        }
+        .section {
+            margin-bottom: 30px;
+            page-break-inside: avoid;
+        }
+        .section-title {
+            background: #f5f5f5;
+            padding: 12px 15px;
+            margin: 0 0 15px 0;
+            border-left: 4px solid #2196F3;
+            font-weight: bold;
+            font-size: 16px;
+            color: #2196F3;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .info-item {
+            background: #f9f9f9;
+            padding: 12px;
+            border-radius: 4px;
+            border-left: 3px solid #2196F3;
+        }
+        .info-label {
+            display: block;
+            font-weight: bold;
+            color: #2196F3;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .info-value {
+            display: block;
+            font-size: 14px;
+            color: #333;
+            word-break: break-word;
+        }
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        .text-area {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            border-left: 3px solid #2196F3;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            min-height: 80px;
+            line-height: 1.5;
+        }
+        .fine-warning {
+            background: #fff3cd;
+            border: 2px solid #ff6b6b;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .fine-warning .section-title {
+            border-left-color: #ff6b6b;
+            color: #ff6b6b;
+            background: #ffe0e0;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        .badge-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .badge-danger {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+        }
+        .signature-line {
+            margin-top: 40px;
+            border-top: 1px solid #333;
+            width: 200px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 RAPORT Z ROZPOZNANIA</h1>
+            <p>Raport ID: ${report.id || report.Id}</p>
+            <p>Wygenerowano: ${new Date().toLocaleString('pl-PL')}</p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">👤 DANE OSOBY</div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Imię i Nazwisko</span>
+                    <span class="info-value">${imie} ${nazwisko}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">PESEL</span>
+                    <span class="info-value">${pesel}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Data urodzenia</span>
+                    <span class="info-value">${dataBirth}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Płeć</span>
+                    <span class="info-value">${plec === 'M' ? 'Mężczyzna' : plec === 'K' ? 'Kobieta' : plec}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📝 NOTATKA OPERATORA</div>
+            <div class="text-area">${notatka}</div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">⚙️ PRZEPROWADZONE DZIAŁANIA</div>
+            <div class="text-area">${dzialania}</div>
+        </div>
+
+        ${czyMandat ? `
+<div class="section fine-warning">
+    <div class="section-title">💰 INFORMACJE O MANDACIE</div>
+    <div class="info-grid">
+        <div class="info-item">
+            <span class="info-label">Kwota mandatu</span>
+            <span class="info-value"><strong>${report.kwotaMandatu || report.KwotaMandatu || '-'} PLN</strong></span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">Numer mandatu</span>
+            <span class="info-value">${report.numerMandata || report.NumerMandata || '-'}</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">Typ mandatu</span>
+            <span class="info-value">${report.typMandata || report.TypMandata || '-'}</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">Status mandatu</span>
+            <span class="info-value"><span class="badge badge-warning">${report.statusMandata || report.StatusMandata || '-'}</span></span>
+        </div>
+    </div>
+</div>
+` : ''}
+
+       <div class="section">
+    <div class="section-title">ℹ️ INFORMACJE DODATKOWE</div>
+    <div class="info-grid">
+        <div class="info-item">
+            <span class="info-label">Data i czas raportu</span>
+            <span class="info-value">${dataRaportu}</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">Status</span>
+            <span class="info-value"><span class="badge">${status === 'Wysłany' ? '✅ Wysłany' : '⏳ Nowy'}</span></span>
+        </div>
+    </div>
+</div>
+
+        <div class="footer">
+            <p>Dokument wygenerowany automatycznie z systemu rozpoznawania twarzy 🎭</p>
+            <p style="margin-top: 20px;">Podpis operatora:</p>
+            <div class="signature-line"></div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            window.print();
+        };
+    <\/script>
+</body>
+</html>
+            `;
+            
+            // Otwórz w nowym oknie i drukuj
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(printContent);
+            printWindow.document.close();
+        }
+        // Usunięcie raportu
+        async function deleteReport(reportId) {
+            if (!confirm('❓ Czy na pewno chcesz usunąć ten raport?\n\nTej operacji nie można cofnąć.')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_URL}/api/reports/${reportId}`, {
+                    method: 'DELETE'
+                });
+                const data = await response.json();
+                
+                if (data.Sukces) {
+                    alert('✅ Raport został usunięty');
+                    loadReports();
+                    
+                    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                    document.getElementById('reports').classList.add('active');
+                } else {
+                    alert('❌ Błąd: ' + data.Wiadomosc);
+                }
+            } catch (error) {
+                alert('❌ Błąd: ' + error.message);
+            }
+        }
+
+        // Event listeners dla raportów
+        document.getElementById('refreshReportsBtn').addEventListener('click', () => loadReports());
+        
+        document.getElementById('clearReportsBtn').addEventListener('click', async () => {
+            if (!confirm('❓ Czy na pewno chcesz usunąć WSZYSTKIE raporty?\n\nTej operacji nie można cofnąć!')) {
+                return;
+            }
+            
+            try {
+                for (const report of allReportsData) {
+                    await fetch(`${API_URL}/api/reports/${report.id || report.Id}`, {
+                        method: 'DELETE'
+                    });
+                }
+                
+                alert('✅ Wszystkie raporty zostały usunięte');
+                loadReports();
+            } catch (error) {
+                alert('❌ Błąd: ' + error.message);
+            }
+        });
+        
+        document.getElementById('reportsSearchInput').addEventListener('input', filterReports);
+        document.getElementById('reportsFilterType').addEventListener('change', filterReports);
+        
+        document.getElementById('printReportBtn').addEventListener('click', () => {
+            exportReportToPDF(currentReportId);
+        });
+        
+        document.getElementById('deleteReportBtn').addEventListener('click', () => {
+            deleteReport(currentReportId);
+        });
+        
+        document.getElementById('backToReportsBtn').addEventListener('click', () => {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('reports').classList.add('active');
+            
+            const reportBtn = Array.from(document.querySelectorAll('[data-page]')).find(b => b.dataset.page === 'reports');
+            if (reportBtn) reportBtn.classList.add('active');
+        });
+
+        // Historia wyszukiwania
+        async function loadHistory() {
+            try {
+                const response = await fetch(`${API_URL}/api/search-history`);
+                const history = await response.json();
+                
+                allHistoryData = history;
+                
+                const total = history.length;
+                const found = history.filter(h => h.Znaleziono).length;
+                const notFound = total - found;
+                
+                document.getElementById('totalSearches').textContent = total;
+                document.getElementById('foundSearches').textContent = found;
+                document.getElementById('notFoundSearches').textContent = notFound;
+                
+                displayHistory(history);
+            } catch (error) {
+                console.error('Błąd loadHistory:', error);
+                document.getElementById('historyContainer').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">⚠️</div>
+                        <h3>Błąd ładowania historii</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function displayHistory(history) {
+            const table = document.getElementById('historyTable');
+            
+            if (history.length === 0) {
+                document.getElementById('historyContainer').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📭</div>
+                        <h3>Brak wyników</h3>
+                        <p>Nie znaleziono pasujących wpisów w historii.</p>
+                    </div>
+                `;
+                document.getElementById('resultCount').textContent = '0';
+                return;
+            }
+            
+            document.getElementById('historyContainer').innerHTML = `
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>PESEL</th>
+                            <th>Imię i Nazwisko</th>
+                            <th>Typ wyszukiwania</th>
+                            <th>Data i czas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTable"></tbody>
+                </table>
+            `;
+            
+            const tableBody = document.getElementById('historyTable');
+            
+            tableBody.innerHTML = history.map(entry => {
+                const date = new Date(entry.DataWyszukiwania);
+                const formattedDate = date.toLocaleString('pl-PL', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+                
+                const fullName = entry.Imie && entry.Nazwisko 
+                    ? `${entry.Imie} ${entry.Nazwisko}`
+                    : '-';
+                
+                const statusIcon = entry.Znaleziono 
+                    ? '<span class="status-icon" style="color: #4caf50;">✅</span>'
+                    : '<span class="status-icon" style="color: #f44336;">❌</span>';
+                
+                const searchTypeBadge = entry.TypWyszukiwania === 'web'
+                    ? '<span class="search-type-badge search-type-web">🌐 Web</span>'
+                    : '<span class="search-type-badge search-type-mobile">📱 Mobile</span>';
+                
+                return `
+                    <tr>
+                        <td style="text-align: center;">${statusIcon}</td>
+                        <td style="font-family: 'Courier New', monospace;">${entry.Pesel}</td>
+                        <td>${fullName}</td>
+                        <td style="text-align: center;">${searchTypeBadge}</td>
+                        <td style="color: var(--text-secondary);">${formattedDate}</td>
+                    </tr>
+                `;
+            }).join('');
+            
+            document.getElementById('resultCount').textContent = history.length;
+        }
+
+        function filterHistory() {
+            const searchTerm = document.getElementById('historySearchInput').value.toLowerCase().trim();
+            const filterType = document.getElementById('historyFilterType').value;
+            
+            let filtered = [...allHistoryData];
+            
+            if (filterType === 'found') {
+                filtered = filtered.filter(h => h.Znaleziono);
+            } else if (filterType === 'notfound') {
+                filtered = filtered.filter(h => !h.Znaleziono);
+            } else if (filterType === 'web') {
+                filtered = filtered.filter(h => h.TypWyszukiwania === 'web');
+            } else if (filterType === 'mobile') {
+                filtered = filtered.filter(h => h.TypWyszukiwania === 'mobile');
+            }
+            
+            if (searchTerm) {
+                filtered = filtered.filter(entry => {
+                    const pesel = (entry.Pesel || '').toLowerCase();
+                    const firstName = (entry.Imie || '').toLowerCase();
+                    const lastName = (entry.Nazwisko || '').toLowerCase();
+                    const fullName = `${firstName} ${lastName}`.trim();
+                    
+                    return pesel.includes(searchTerm) || 
+                           firstName.includes(searchTerm) || 
+                           lastName.includes(searchTerm) ||
+                           fullName.includes(searchTerm);
+                });
+            }
+            
+            displayHistory(filtered);
+        }
+
+        async function clearHistory() {
+            if (!confirm('❓ Czy na pewno chcesz wyczyścić całą historię wyszukiwania?\n\nTej operacji nie można cofnąć.')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_URL}/api/search-history`, {
+                    method: 'DELETE'
+                });
+                const data = await response.json();
+                
+                if (data.Sukces) {
+                    alert('✅ Historia wyszukiwania została wyczyszczona');
+                    loadHistory();
+                } else {
+                    alert('❌ Błąd: ' + data.Wiadomosc);
+                }
+            } catch (error) {
+                alert('❌ Błąd: ' + error.message);
+            }
+        }
+
+        // Logi aktywności
+        async function loadLogs() {
+            try {
+                const response = await fetch(`${API_URL}/api/activity-logs?limit=200`);
+                const logs = await response.json();
+                
+                allLogsData = logs;
+                
+                const total = logs.length;
+                const today = new Date().toLocaleDateString('pl-PL');
+                const todayCount = logs.filter(log => {
+                    const logDate = new Date(log.Data).toLocaleDateString('pl-PL');
+                    return logDate === today;
+                }).length;
+                
+                document.getElementById('totalLogs').textContent = total;
+                document.getElementById('todayLogs').textContent = todayCount;
+                
+                displayLogs(logs);
+            } catch (error) {
+                console.error('Błąd loadLogs:', error);
+                document.getElementById('logsContainer').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">⚠️</div>
+                        <h3>Błąd ładowania logów</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function displayLogs(logs) {
+            if (logs.length === 0) {
+                document.getElementById('logsContainer').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📭</div>
+                        <h3>Brak logów</h3>
+                        <p>Nie znaleziono pasujących wpisów w logach.</p>
+                    </div>
+                `;
+                document.getElementById('logsResultCount').textContent = '0';
+                return;
+            }
+            
+            document.getElementById('logsContainer').innerHTML = `
+                <table class="logs-table">
+                    <thead>
+                        <tr>
+                            <th>Typ akcji</th>
+                            <th>PESEL</th>
+                            <th>Nazwa</th>
+                            <th>Szczegóły</th>
+                            <th>Użytkownik</th>
+                            <th>Data i czas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logsTable"></tbody>
+                </table>
+            `;
+            
+            const tableBody = document.getElementById('logsTable');
+            
+            tableBody.innerHTML = logs.map(log => {
+                const date = new Date(log.Data);
+                const formattedDate = date.toLocaleString('pl-PL', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+                
+                const actionIcons = {
+                    'SEARCH': '🔍',
+                    'REGISTER': '➕',
+                    'UPDATE_SECURITY': '🚨',
+                    'NFC_TOGGLE': '📡',
+                    'DELETE': '🗑️',
+                    'LOGIN': '🔐'
+                };
+                
+                const icon = actionIcons[log.TypAkcji] || '📝';
+                
+                return `
+                    <tr>
+                        <td><span class="action-badge">${icon} ${log.TypAkcji}</span></td>
+                        <td style="font-family: 'Courier New', monospace;">${log.Pesel || '-'}</td>
+                        <td>${log.Nazwa || '-'}</td>
+                        <td style="font-size: 0.9em;">${log.Szczegoly || '-'}</td>
+                        <td>${log.TypUzytkownika}</td>
+                        <td style="color: var(--text-secondary);">${formattedDate}</td>
+                    </tr>
+                `;
+            }).join('');
+            
+            document.getElementById('logsResultCount').textContent = logs.length;
+        }
+
+        function filterLogs() {
+            const searchTerm = document.getElementById('logsSearchInput').value.toLowerCase().trim();
+            const filterType = document.getElementById('logsFilterType').value;
+            
+            let filtered = [...allLogsData];
+            
+            if (filterType !== 'all') {
+                const typeMap = {
+                    'search': 'SEARCH',
+                    'register': 'REGISTER',
+                    'security': 'UPDATE_SECURITY',
+                    'nfc': 'NFC_TOGGLE',
+                    'delete': 'DELETE'
+                };
+                filtered = filtered.filter(log => log.TypAkcji === typeMap[filterType]);
+            }
+            
+            if (searchTerm) {
+                filtered = filtered.filter(log => {
+                    const pesel = (log.Pesel || '').toLowerCase();
+                    const name = (log.Nazwa || '').toLowerCase();
+                    const details = (log.Szczegoly || '').toLowerCase();
+                    const action = (log.TypAkcji || '').toLowerCase();
+                    
+                    return pesel.includes(searchTerm) || 
+                           name.includes(searchTerm) || 
+                           details.includes(searchTerm) ||
+                           action.includes(searchTerm);
+                });
+            }
+            
+            displayLogs(filtered);
+        }
+
+        async function clearLogs() {
+            if (!confirm('❓ Czy na pewno chcesz wyczyścić wszystkie logi?\n\nTej operacji nie można cofnąć.')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_URL}/api/activity-logs`, {
+                    method: 'DELETE'
+                });
+                const data = await response.json();
+                
+                if (data.Sukces) {
+                    alert('✅ Logi zostały wyczyszczone');
+                    loadLogs();
+                } else {
+                    alert('❌ Błąd: ' + data.Wiadomosc);
+                }
+            } catch (error) {
+                alert('❌ Błąd: ' + error.message);
+            }
+        }
+
+        // Event listeners
+        document.getElementById('searchBtn').addEventListener('click', searchPESEL);
+        document.getElementById('clearBtn').addEventListener('click', () => {
+            document.getElementById('peselInput').value = '';
+            document.getElementById('profileInfo').style.display = 'none';
+            document.getElementById('infoCard').style.display = 'none';
+            currentPesel = null;
+        });
+
+        document.getElementById('peselInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') searchPESEL();
+        });
+
+        document.getElementById('peselInput').addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/\D/g, '');
+        });
+
+        document.getElementById('refreshHistoryBtn').addEventListener('click', loadHistory);
+        document.getElementById('clearHistoryBtn').addEventListener('click', clearHistory);
+        document.getElementById('historySearchInput').addEventListener('input', filterHistory);
+        document.getElementById('historyFilterType').addEventListener('change', filterHistory);
+
+        document.getElementById('refreshLogsBtn').addEventListener('click', loadLogs);
+        document.getElementById('clearLogsBtn').addEventListener('click', clearLogs);
+        document.getElementById('logsSearchInput').addEventListener('input', filterLogs);
+        document.getElementById('logsFilterType').addEventListener('change', filterLogs);
+
+        // Załaduj raporty na starcie
+        loadReports();
+
+        // ✅ ZAŁADUJ RAPORTY NA PROFILU
+async function loadProfileReports(pesel) {
+    try {
+        const response = await fetch(`${API_URL}/api/reports/person/${pesel}`);
+        const data = await response.json();
+        
+        if (data.Sukces && data.Raporty && data.Raporty.length > 0) {
+            const total = data.Raporty.length;
+            const withFine = data.Raporty.filter(r => r.czyMandat || r.CzyMandat).length;
+            const submitted = data.Raporty.filter(r => (r.status || r.Status) === 'Wysłany').length;
+            
+            document.getElementById('profileTotalReports').textContent = total;
+            document.getElementById('profileWithFine').textContent = withFine;
+            document.getElementById('profileSubmitted').textContent = submitted;
+            
+            displayProfileReports(data.Raporty);
+        } else {
+            document.getElementById('profileTotalReports').textContent = '0';
+            document.getElementById('profileWithFine').textContent = '0';
+            document.getElementById('profileSubmitted').textContent = '0';
+            document.getElementById('profileReportsContainer').innerHTML = `
+                <div style="text-align: center; color: var(--text-secondary); padding: 20px;">
+                    <span style="font-size: 2em;">📭</span>
+                    <p>Brak raportów dla tej osoby</p>
+                </div>
+            `;
+        }
+    } catch (error) {
+        console.error('Błąd ładowania raportów profilu:', error);
+        document.getElementById('profileReportsContainer').innerHTML = `
+            <div style="text-align: center; color: #f44336; padding: 20px;">
+                <span style="font-size: 2em;">⚠️</span>
+                <p>Błąd: ${error.message}</p>
+            </div>
+        `;
+    }
+}
+
+// ✅ WYŚWIETL RAPORTY NA PROFILU
+function displayProfileReports(reports) {
+    const container = document.getElementById('profileReportsContainer');
+    
+    if (!reports || reports.length === 0) {
+        container.innerHTML = `
+            <div style="text-align: center; color: var(--text-secondary); padding: 20px;">
+                <span style="font-size: 2em;">📭</span>
+                <p>Brak raportów dla tej osoby</p>
+            </div>
+        `;
+        return;
+    }
+
+    let html = `
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.85em;">
+            <thead>
+                <tr style="background: var(--border-color);">
+                    <th style="padding: 8px; text-align: left; color: var(--text-primary); font-weight: bold; font-size: 12px;">Data</th>
+                    <th style="padding: 8px; text-align: left; color: var(--text-primary); font-weight: bold; font-size: 12px;">Status</th>
+                    <th style="padding: 8px; text-align: left; color: var(--text-primary); font-weight: bold; font-size: 12px;">Mandat</th>
+                    <th style="padding: 8px; text-align: center; color: var(--text-primary); font-weight: bold; font-size: 12px;">Akcje</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    reports.forEach(report => {
+        const dataRaportu = new Date(report.dataRaportu || report.DataRaportu);
+        const formattedDate = dataRaportu.toLocaleDateString('pl-PL', {
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+        const status = report.status || report.Status || 'Nowy';
+        const czyMandat = report.czyMandat || report.CzyMandat;
+        const reportId = report.id || report.Id;
+
+        const statusIcon = status === 'Wysłany' 
+            ? '<span style="color: #4caf50;">✅</span>'
+            : '<span style="color: #ff9800;">⏳</span>';
+
+        const mandatBadge = czyMandat
+            ? '<span style="color: #f44336; font-weight: bold;">💰</span>'
+            : '<span style="color: #4caf50; font-weight: bold;">❌</span>';
+
+        html += `
+            <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 8px; color: var(--text-primary); font-size: 11px;">${formattedDate}</td>
+                <td style="padding: 8px; color: var(--text-primary);">${statusIcon} ${status}</td>
+                <td style="padding: 8px; text-align: center;">${mandatBadge}</td>
+                <td style="padding: 8px; text-align: center;">
+                    <button class="btn-small btn-info" onclick="viewReportDetailFromProfile('${reportId}')" style="padding: 4px 8px; font-size: 11px;">👁️</button>
+                    <button class="btn-small" onclick="deleteReportFromProfile('${reportId}')" style="padding: 4px 8px; font-size: 11px; background: #f44336; color: white; margin-left: 3px;">🗑️</button>
+                </td>
+            </tr>
+        `;
+    });
+
+    html += `
+            </tbody>
+        </table>
+    `;
+
+    container.innerHTML = html;
+}
+
+// ✅ PODGLĄD RAPORTU Z PROFILU
+function viewReportDetailFromProfile(reportId) {
+    fetch(`${API_URL}/api/reports/${reportId}`)
+        .then(res => res.json())
+        .then(data => {
+            if (!data.Sukces || !data.Raport) {
+                alert('❌ Raport nie znaleziony');
+                return;
+            }
+
+            const report = data.Raport;
+            currentReportId = reportId;
+            
+            const imie = report.imie || report.Imie || '';
+            const nazwisko = report.nazwisko || report.Nazwisko || '';
+            document.getElementById('reportDetailName').textContent = `${imie} ${nazwisko}`;
+            document.getElementById('reportDetailPesel').textContent = report.pesel || report.Pesel || '-';
+            
+            const dataBirth = new Date(report.dataUrodzenia || report.DataUrodzenia);
+            document.getElementById('reportDetailBirth').textContent = dataBirth.toLocaleDateString('pl-PL');
+            
+            document.getElementById('reportDetailGender').textContent = report.plec || report.Plec || '-';
+            
+            const pewnosc = (report.pewnosc || report.Pewnosc || 0) * 100;
+            document.getElementById('reportDetailCertainty').textContent = `${pewnosc.toFixed(2)}%`;
+            
+            document.getElementById('reportDetailNote').textContent = report.notatka || report.Notatka || '-';
+            document.getElementById('reportDetailActions').textContent = report.przeprowadzoneDialania || report.PrzeprowadzoneDialania || '-';
+            
+            const czyMandat = report.czyMandat || report.CzyMandat;
+            const fineSection = document.getElementById('reportDetailFineSection');
+            
+            if (czyMandat) {
+                fineSection.style.display = 'block';
+                document.getElementById('reportDetailFineAmount').textContent = `${report.kwotaMandatu || report.KwotaMandatu || '-'} PLN`;
+                document.getElementById('reportDetailFineNumber').textContent = report.numerMandata || report.NumerMandata || '-';
+                document.getElementById('reportDetailFineType').textContent = report.typMandata || report.TypMandata || '-';
+                document.getElementById('reportDetailFineStatus').textContent = report.statusMandata || report.StatusMandata || '-';
+            } else {
+                fineSection.style.display = 'none';
+            }
+            
+            document.getElementById('reportDetailId').textContent = report.id || report.Id || '-';
+            
+            const dataRaportu = new Date(report.dataRaportu || report.DataRaportu);
+            document.getElementById('reportDetailDate').textContent = dataRaportu.toLocaleString('pl-PL', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            document.getElementById('reportDetailStatus').textContent = report.status || report.Status || '-';
+            
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('reportDetail').classList.add('active');
+            
+            const reportBtn = Array.from(document.querySelectorAll('[data-page]')).find(b => b.dataset.page === 'reports');
+            if (reportBtn) reportBtn.classList.add('active');
+        })
+        .catch(error => {
+            alert('❌ Błąd: ' + error.message);
+        });
+}
+
+// ✅ USUŃ RAPORT Z PROFILU
+async function deleteReportFromProfile(reportId) {
+    if (!confirm('❓ Czy na pewno chcesz usunąć ten raport?')) {
+        return;
+    }
+    
+    try {
+        const response = await fetch(`${API_URL}/api/reports/${reportId}`, {
+            method: 'DELETE'
+        });
+        const data = await response.json();
+        
+        if (data.Sukces) {
+            alert('✅ Raport usunięty');
+            if (currentPesel) {
+                loadProfileReports(currentPesel);
+            }
+        } else {
+            alert('❌ Błąd: ' + data.Wiadomosc);
+        }
+    } catch (error) {
+        alert('❌ Błąd: ' + error.message);
+    }
+}
+    
+    </script>
+</body>
+</html>

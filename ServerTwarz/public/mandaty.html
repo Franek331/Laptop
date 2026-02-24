@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💰 Zarządzanie Mandatami - System Rozpoznawania Twarzy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2196F3;
+            --success-color: #4CAF50;
+            --warning-color: #FF9800;
+            --danger-color: #f44336;
+            --dark-bg: #1a1a1a;
+            --light-bg: #f5f5f5;
+            --input-bg: #ffffff;
+            --text-primary: #333;
+            --text-secondary: #666;
+            --border-color: #ddd;
+        }
+
+        html[data-theme="dark"] {
+            --dark-bg: #1a1a1a;
+            --light-bg: #2a2a2a;
+            --input-bg: #333333;
+            --text-primary: #ffffff;
+            --text-secondary: #aaa;
+            --border-color: #444;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light-bg);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .navbar {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 15px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: rgba(255,255,255,0.4);
+            transform: translateY(-2px);
+        }
+
+        .theme-toggle {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255,255,255,0.4);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .header p {
+            color: var(--text-secondary);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--input-bg);
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .stat-card h3 {
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .stat-subtext {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        .filters {
+            background: var(--input-bg);
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .filter-group input,
+        .filter-group select {
+            padding: 10px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            background: var(--input-bg);
+            color: var(--text-primary);
+        }
+
+        .filter-group input:focus,
+        .filter-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            grid-column: 1 / -1;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1976D2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+        }
+
+        .btn-success {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+
+        .btn-warning {
+            background: var(--warning-color);
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background: #e68900;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #da190b;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--text-secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-primary);
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+
+        .btn-info {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .btn-info:hover {
+            background: #138496;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--input-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        thead {
+            background: var(--border-color);
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tbody tr:hover {
+            background: rgba(33, 150, 243, 0.05);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-paid {
+            background: rgba(76, 175, 80, 0.2);
+            color: #2e7d32;
+        }
+
+        .status-unpaid {
+            background: rgba(244, 67, 54, 0.2);
+            color: #c62828;
+        }
+
+        .status-pending {
+            background: rgba(255, 152, 0, 0.2);
+            color: #e65100;
+        }
+
+        .status-new {
+            background: rgba(33, 150, 243, 0.2);
+            color: #1565c0;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--input-bg);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .modal-header h2 {
+            color: var(--primary-color);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 10px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            background: var(--input-bg);
+            color: var(--text-primary);
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-success {
+            background: rgba(76, 175, 80, 0.1);
+            color: #2e7d32;
+            border: 2px solid #4CAF50;
+        }
+
+        .alert-error {
+            background: rgba(244, 67, 54, 0.1);
+            color: #c62828;
+            border: 2px solid #f44336;
+        }
+
+        .alert-info {
+            background: rgba(33, 150, 243, 0.1);
+            color: #1565c0;
+            border: 2px solid #2196F3;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .empty-state h3 {
+            margin: 20px 0 10px;
+            color: var(--text-primary);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            background: var(--light-bg);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .info-label {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            display: block;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .money-value {
+            color: var(--danger-color);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .results-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: var(--input-bg);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .results-info h3 {
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .results-count {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filters {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-group {
+                grid-column: auto;
+                justify-content: stretch;
+            }
+
+            .btn {
+                flex: 1;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+
+            .action-buttons {
+                flex-wrap: wrap;
+            }
+
+            .action-buttons .btn {
+                flex: 1;
+                min-width: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-brand">💰 Mandaty</div>
+        <ul class="navbar-menu">
+            <li><button class="nav-btn active" data-page="mandaty">📋 Wszystkie</button></li>
+            <li><button class="nav-btn" data-page="statystyki">📊 Statystyki</button></li>
+            <li><button class="nav-btn" data-page="szczegoly">👤 Szczegóły</button></li>
+            <li><button class="theme-toggle" id="themeToggle">🌙</button></li>
+            <li><a href="/" style="color: white; text-decoration: none; padding: 10px 18px; background: rgba(255,255,255,0.2); border-radius: 6px; transition: all 0.3s;">← Powrót</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <!-- STRONA 1: WSZYSTKIE MANDATY -->
+        <div id="mandaty" class="page active">
+            <div class="header">
+                <h1>💰 Zarządzanie Mandatami</h1>
+                <p>Pełny przegląd raportów z mandatami - edycja statusów, kwot i notatek</p>
+            </div>
+
+            <div id="alertContainer"></div>
+
+            <!-- STATYSTYKI SZYBKIE -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Razem Mandatów</h3>
+                    <div class="stat-number" id="totalFines">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Zapłacone</h3>
+                    <div class="stat-number" style="color: var(--success-color);" id="paidFines">0</div>
+                    <div class="stat-subtext" id="paidAmount">0 PLN</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Nie Zapłacone</h3>
+                    <div class="stat-number" style="color: var(--danger-color);" id="unpaidFines">0</div>
+                    <div class="stat-subtext" id="unpaidAmount">0 PLN</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Oczekujące</h3>
+                    <div class="stat-number" style="color: var(--warning-color);" id="pendingFines">0</div>
+                </div>
+            </div>
+
+            <!-- FILTRY -->
+            <div class="filters">
+                <div class="filter-group">
+                    <label>🔍 Szukaj (Imię, Nazwisko, PESEL)</label>
+                    <input type="text" id="searchInput" placeholder="Wpisz dane osoby...">
+                </div>
+                <div class="filter-group">
+                    <label>📋 Numer Mandatu</label>
+                    <input type="text" id="nrMandatuFilter" placeholder="Np. 123/2024...">
+                </div>
+                <div class="filter-group">
+                    <label>🎯 Status</label>
+                    <select id="statusFilter">
+                        <option value="">Wszystkie statusy</option>
+                        <option value="Zapłacony">✅ Zapłacony</option>
+                        <option value="Nie zapłacony">❌ Nie zapłacony</option>
+                        <option value="Wysłany">📤 Wysłany</option>
+                        <option value="Nowy">🆕 Nowy</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>💰 Zakres kwoty (od)</label>
+                    <input type="number" id="minAmount" placeholder="0">
+                </div>
+                <div class="filter-group">
+                    <label>💰 Zakres kwoty (do)</label>
+                    <input type="number" id="maxAmount" placeholder="10000">
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="filterBtn">🔍 Filtruj</button>
+                    <button class="btn btn-secondary" id="resetBtn">🔄 Wyczyść filtry</button>
+                    <button class="btn btn-warning" id="refreshBtn">♻️ Odśwież</button>
+                </div>
+            </div>
+
+            <!-- LICZBA WYNIKÓW -->
+            <div class="results-info">
+                <h3>Wyniki: <span class="results-count" id="resultCount">0</span></h3>
+                <div>
+                    <button class="btn btn-success btn-small" id="exportBtn">📊 Eksport</button>
+                    <button class="btn btn-danger btn-small" id="deleteAllBtn">🗑️ Usuń zaznaczone</button>
+                </div>
+            </div>
+
+            <!-- TABELA MANDATÓW -->
+            <div style="overflow-x: auto;">
+                <table id="mandatyTable">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="selectAll"></th>
+                            <th>PESEL</th>
+                            <th>Imię i Nazwisko</th>
+                            <th>Numer Mandatu</th>
+                            <th>Typ</th>
+                            <th>Kwota</th>
+                            <th>Status</th>
+                            <th>Imię i Nazwisko Wystawiającego</th>
+                            <th>Data</th>
+                            <th>Akcje</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mandatyBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- STRONA 2: STATYSTYKI -->
+        <div id="statystyki" class="page">
+            <div class="header">
+                <h1>📊 Statystyki Mandatów</h1>
+                <p>Szczegółowa analiza mandatów w systemie</p>
+            </div>
+
+            <div id="statsContainer" class="stats-grid">
+                <div class="stat-card">
+                    <h3>Łącznie Mandatów</h3>
+                    <div class="stat-number" id="statTotal">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Zapłacone</h3>
+                    <div class="stat-number" style="color: var(--success-color);" id="statPaid">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Nie Zapłacone</h3>
+                    <div class="stat-number" style="color: var(--danger-color);" id="statUnpaid">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Oczekujące</h3>
+                    <div class="stat-number" style="color: var(--warning-color);" id="statPending">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Łącznie Kwota</h3>
+                    <div class="stat-number money-value" id="statTotalAmount">0 PLN</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Kwota Zapłacona</h3>
+                    <div class="stat-number" style="color: var(--success-color);" id="statPaidAmount">0 PLN</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Kwota Do Zapłacenia</h3>
+                    <div class="stat-number money-value" id="statUnpaidAmount">0 PLN</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Procent Zapłacenia</h3>
+                    <div class="stat-number" style="color: var(--primary-color);" id="statPercentage">0%</div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" id="refreshStatsBtn">🔄 Odśwież Statystyki</button>
+        </div>
+
+        <!-- STRONA 3: SZCZEGÓŁY RAPORTU -->
+        <div id="szczegoly" class="page">
+            <div class="header">
+                <h1>👤 Szczegóły Raportu</h1>
+                <p>Pełne informacje o wybranym raporcie z mandatem</p>
+            </div>
+
+            <div id="szczegoly-container">
+                <div class="empty-state">
+                    <div class="empty-state-icon">👈</div>
+                    <h3>Wybierz raport z listy</h3>
+                    <p>Kliknij przycisk "Podgląd" aby zobaczyć szczegóły</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DO EDYCJI MANDATU -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>✏️ Edycja Mandatu</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+
+            <div id="editFormContainer">
+                <div class="info-grid" id="editPersonInfo"></div>
+
+                <form id="editForm">
+                    <div class="form-group">
+                        <label>📋 Numer Mandatu</label>
+                        <input type="text" id="editNumer" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>🏷️ Typ Mandatu</label>
+                        <input type="text" id="editTyp" placeholder="np. Parkowanie, Prędkość, itp.">
+                    </div>
+
+                    <div class="form-group">
+                        <label>💰 Kwota (PLN)</label>
+                        <input type="number" id="editKwota" required step="0.01" min="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label>🎯 Status</label>
+                        <select id="editStatus" required>
+                            <option value="Nowy">🆕 Nowy</option>
+                            <option value="Wysłany">📤 Wysłany</option>
+                            <option value="Zapłacony">✅ Zapłacony</option>
+                            <option value="Nie zapłacony">❌ Nie zapłacony</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>📝 Notatka</label>
+                        <textarea id="editNotatka" rows="4" placeholder="Dodatkowe informacje..."></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success">💾 Zapisz Zmiany</button>
+                        <button type="button" class="btn btn-secondary" id="cancelEditBtn">Anuluj</button>
+                        <button type="button" class="btn btn-danger" id="deleteBtn">🗑️ Usuń Mandat</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DO SZCZEGÓŁÓW -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📋 Szczegóły Raportu</h2>
+                <button class="modal-close" id="closeDetailsModal">&times;</button>
+            </div>
+
+            <div id="detailsContent"></div>
+
+            <div class="form-actions">
+                <button class="btn btn-primary" id="editFromDetailsBtn">✏️ Edytuj</button>
+                <button class="btn btn-warning" id="printFromDetailsBtn">🖨️ Drukuj PDF</button>
+                <button class="btn btn-secondary" id="closeDetailsBtn">Zamknij</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5000';
+        let allFines = [];
+        let filteredFines = [];
+        let selectedFines = new Set();
+        let currentEditingId = null;
+
+        // ===== DARK MODE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        });
+
+        // ===== NAWIGACJA =====
+        document.querySelectorAll('[data-page]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const pageName = e.target.dataset.page;
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                document.getElementById(pageName).classList.add('active');
+
+                if (pageName === 'statystyki') {
+                    loadStats();
+                }
+            });
+        });
+
+        // ===== FUNKCJE POMOCNICZE =====
+        function showAlert(message, type = 'info') {
+            const alertContainer = document.getElementById('alertContainer');
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.innerHTML = `
+                <span>${message}</span>
+            `;
+            alertContainer.innerHTML = '';
+            alertContainer.appendChild(alertDiv);
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 5000);
+        }
+
+        function formatMoney(amount) {
+            return new Intl.NumberFormat('pl-PL', {
+                style: 'currency',
+                currency: 'PLN'
+            }).format(amount || 0);
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleString('pl-PL', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function getStatusBadge(status) {
+            const badges = {
+                'Zapłacony': '<span class="status-badge status-paid">✅ Zapłacony</span>',
+                'Nie zapłacony': '<span class="status-badge status-unpaid">❌ Nie zapłacony</span>',
+                'Wysłany': '<span class="status-badge status-pending">📤 Wysłany</span>',
+                'Nowy': '<span class="status-badge status-new">🆕 Nowy</span>'
+            };
+            return badges[status] || status;
+        }
+
+        // ===== ŁADOWANIE MANDATÓW =====
+        async function loadFines() {
+            try {
+                const response = await fetch(`${API_URL}/api/fines`);
+                const data = await response.json();
+                
+                if (data.Sukces && (data.Raporty || data.Mandaty)) {
+                    const raporty = data.Raporty || data.Mandaty;
+                    allFines = raporty.filter(r => r.czyMandat || r.CzyMandat || true); // Jeśli Mandaty, wszystkie mają mandat
+                    filteredFines = [...allFines];
+                    displayFines(filteredFines);
+                    updateQuickStats();
+                    showAlert('✅ Mandaty załadowane', 'success');
+                } else {
+                    showAlert('❌ Błąd ładowania mandatów', 'error');
+                }
+            } catch (error) {
+                showAlert('❌ Błąd: ' + error.message, 'error');
+            }
+        }
+
+        // ===== WYŚWIETLANIE TABELI =====
+        function displayFines(fines) {
+            const tbody = document.getElementById('mandatyBody');
+            document.getElementById('resultCount').textContent = fines.length;
+
+            if (fines.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9" style="text-align: center; padding: 40px;">
+                            <div class="empty-state">
+                                <div class="empty-state-icon">📭</div>
+                                <p>Nie znaleziono mandatów spełniających kryteria</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = fines.map(fine => {
+                const id = fine.id || fine.Id;
+                const pesel = fine.pesel || fine.Pesel;
+                const imie = fine.imie || fine.Imie;
+                const nazwisko = fine.nazwisko || fine.Nazwisko;
+                const numer = fine.numer || fine.Numer || fine.numer || fine.numerMandata || fine.NumerMandata || '-';
+                const typ = fine.typ || fine.Typ || fine.typ || fine.typMandata || fine.TypMandata || '-';
+                const kwota = fine.kwota || fine.Kwota || fine.kwota || fine.kwotaMandatu || fine.KwotaMandatu || 0;
+                const status = fine.status || fine.Status || fine.status || fine.statusMandata || fine.StatusMandata || 'Nowy';
+                const operatorImie = fine.operatorImie || fine.OperatorImie || '';
+const operatorNazwisko = fine.operatorNazwisko || fine.OperatorNazwisko || '';
+const operatorFullName = operatorImie && operatorNazwisko 
+    ? `${operatorImie} ${operatorNazwisko}` 
+    : fine.operator || fine.Operator || '-';
+                const data = fine.data || fine.Data || fine.data || fine.dataRaportu || fine.DataRaportu;
+
+                return `
+                    <tr>
+                        <td><input type="checkbox" class="fineCheckbox" value="${id}" data-pesel="${pesel}"></td>
+                        <td style="font-family: monospace; font-weight: bold;">${pesel}</td>
+                        <td>${imie} ${nazwisko}</td>
+                        <td><strong>${numer}</strong></td>
+                        <td>${typ}</td>
+                        <td style="font-weight: bold; color: var(--danger-color);">${formatMoney(kwota)}</td>
+                        <td>${getStatusBadge(status)}</td>
+                        <td style="color: var(--primary-color); font-weight: 500;">${operatorFullName}</td>
+                        <td style="color: var(--text-secondary); font-size: 12px;">${formatDate(data)}</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn btn-info btn-small" onclick="showDetails('${id}')">👁️ Podgląd</button>
+                                <button class="btn btn-warning btn-small" onclick="showEditModal('${id}')">✏️ Edytuj</button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            // Event listener dla checkboxów
+            document.querySelectorAll('.fineCheckbox').forEach(checkbox => {
+                checkbox.addEventListener('change', (e) => {
+                    if (e.target.checked) {
+                        selectedFines.add(e.target.value);
+                    } else {
+                        selectedFines.delete(e.target.value);
+                    }
+                    updateSelectAll();
+                });
+            });
+
+            document.getElementById('selectAll').addEventListener('change', (e) => {
+                document.querySelectorAll('.fineCheckbox').forEach(checkbox => {
+                    checkbox.checked = e.target.checked;
+                    if (e.target.checked) {
+                        selectedFines.add(checkbox.value);
+                    } else {
+                        selectedFines.delete(checkbox.value);
+                    }
+                });
+            });
+        }
+
+        function updateSelectAll() {
+            const checkboxes = document.querySelectorAll('.fineCheckbox');
+            const allChecked = Array.from(checkboxes).every(c => c.checked);
+            const someChecked = Array.from(checkboxes).some(c => c.checked);
+            
+            document.getElementById('selectAll').checked = allChecked;
+            document.getElementById('selectAll').indeterminate = someChecked && !allChecked;
+        }
+
+        // ===== STATYSTYKI SZYBKIE =====
+        function updateQuickStats() {
+            const total = allFines.length;
+            const paid = allFines.filter(f => (f.statusMandata || f.StatusMandata) === 'Zapłacony').length;
+            const unpaid = allFines.filter(f => (f.statusMandata || f.StatusMandata) === 'Nie zapłacony').length;
+            const pending = allFines.filter(f => ['Nowy', 'Wysłany'].includes(f.statusMandata || f.StatusMandata)).length;
+
+            const totalAmount = allFines.reduce((sum, f) => sum + (f.kwotaMandatu || f.KwotaMandatu || 0), 0);
+            const paidAmount = allFines.filter(f => (f.statusMandata || f.StatusMandata) === 'Zapłacony')
+                .reduce((sum, f) => sum + (f.kwotaMandatu || f.KwotaMandatu || 0), 0);
+            const unpaidAmount = totalAmount - paidAmount;
+
+            document.getElementById('totalFines').textContent = total;
+            document.getElementById('paidFines').textContent = paid;
+            document.getElementById('paidAmount').textContent = formatMoney(paidAmount);
+            document.getElementById('unpaidFines').textContent = unpaid;
+            document.getElementById('unpaidAmount').textContent = formatMoney(unpaidAmount);
+            document.getElementById('pendingFines').textContent = pending;
+        }
+
+        // ===== STATYSTYKI PEŁNE =====
+        async function loadStats() {
+            try {
+                const response = await fetch(`${API_URL}/api/fines/stats`);
+                const data = await response.json();
+                
+                if (data.Sukces) {
+                    const s = data.Statystyki;
+                    
+                    document.getElementById('statTotal').textContent = s.Razem;
+                    document.getElementById('statPaid').textContent = s.Zaplacone;
+                    document.getElementById('statUnpaid').textContent = s.NieZaplacone;
+                    document.getElementById('statPending').textContent = s.Oczekujace;
+                    
+                    document.getElementById('statTotalAmount').textContent = formatMoney(s.KwotaRazem);
+                    document.getElementById('statPaidAmount').textContent = formatMoney(s.KwotaZaplacona);
+                    document.getElementById('statUnpaidAmount').textContent = formatMoney(s.KwotaNieZaplacona);
+                    
+                    const percentage = s.KwotaRazem > 0 
+                        ? ((s.KwotaZaplacona / s.KwotaRazem) * 100).toFixed(1)
+                        : 0;
+                    document.getElementById('statPercentage').textContent = percentage + '%';
+                }
+            } catch (error) {
+                showAlert('❌ Błąd ładowania statystyk: ' + error.message, 'error');
+            }
+        }
+
+        // ===== FILTRY =====
+        function applyFilters() {
+            const search = document.getElementById('searchInput').value.toLowerCase().trim();
+            const nrMandatu = document.getElementById('nrMandatuFilter').value.toLowerCase().trim();
+            const status = document.getElementById('statusFilter').value;
+            const minAmount = parseFloat(document.getElementById('minAmount').value) || 0;
+            const maxAmount = parseFloat(document.getElementById('maxAmount').value) || Infinity;
+
+            filteredFines = allFines.filter(fine => {
+                const pesel = (fine.pesel || fine.Pesel || '').toLowerCase();
+                const imie = (fine.imie || fine.Imie || '').toLowerCase();
+                const nazwisko = (fine.nazwisko || fine.Nazwisko || '').toLowerCase();
+                const fullName = `${imie} ${nazwisko}`.trim();
+                const numer = (fine.numer || fine.Numer || '').toLowerCase();
+                const fineStatus = fine.status || fine.statusMandata || fine.StatusMandata;
+                const kwota = fine.kwota || fine.kwotaMandatu || fine.KwotaMandatu || 0;
+
+                const searchMatch = !search || 
+                    pesel.includes(search) || 
+                    imie.includes(search) || 
+                    nazwisko.includes(search) ||
+                    fullName.includes(search);
+
+                const nrMatch = !nrMandatu || numer.includes(nrMandatu);
+                const statusMatch = !status || fineStatus === status;
+                const amountMatch = kwota >= minAmount && kwota <= maxAmount;
+
+                return searchMatch && nrMatch && statusMatch && amountMatch;
+            });
+
+            displayFines(filteredFines);
+        }
+
+        document.getElementById('filterBtn').addEventListener('click', applyFilters);
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('nrMandatuFilter').value = '';
+            document.getElementById('statusFilter').value = '';
+            document.getElementById('minAmount').value = '';
+            document.getElementById('maxAmount').value = '';
+            filteredFines = [...allFines];
+            displayFines(filteredFines);
+        });
+
+        // ===== MODAL EDYCJI =====
+        async function showEditModal(fineId) {
+            currentEditingId = fineId;
+            const fine = allFines.find(f => (f.id || f.Id) === fineId);
+            
+            if (!fine) {
+                showAlert('❌ Mandat nie znaleziony', 'error');
+                return;
+            }
+
+            // Wypełnij dane osoby
+            const imie = fine.imie || fine.Imie;
+            const nazwisko = fine.nazwisko || fine.Nazwisko;
+            const pesel = fine.pesel || fine.Pesel;
+            const dataBirth = new Date(fine.dataUrodzenia || fine.DataUrodzenia);
+            
+            document.getElementById('editPersonInfo').innerHTML = `
+                <div class="info-item">
+                    <span class="info-label">Imię i Nazwisko</span>
+                    <span class="info-value">${imie} ${nazwisko}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">PESEL</span>
+                    <span class="info-value">${pesel}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Data Ur.</span>
+                    <span class="info-value">${dataBirth.toLocaleDateString('pl-PL')}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Data Raportu</span>
+                    <span class="info-value">${formatDate(fine.data || fine.dataRaportu || fine.DataRaportu)}</span>
+                </div>
+            `;
+
+            // Wypełnij formularz
+            document.getElementById('editNumer').value = fine.numer || fine.numerMandata || fine.NumerMandata || '';
+            document.getElementById('editTyp').value = fine.typ || fine.typMandata || fine.TypMandata || '';
+            document.getElementById('editKwota').value = fine.kwota || fine.kwotaMandatu || fine.KwotaMandatu || '';
+            document.getElementById('editStatus').value = fine.status || fine.statusMandata || fine.StatusMandata || 'Nowy';
+            document.getElementById('editNotatka').value = fine.notatka || fine.Notatka || '';
+
+            document.getElementById('editModal').classList.add('show');
+        }
+
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('editModal').classList.remove('show');
+        });
+
+        document.getElementById('cancelEditBtn').addEventListener('click', () => {
+            document.getElementById('editModal').classList.remove('show');
+        });
+
+        document.getElementById('editForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const numer = document.getElementById('editNumer').value;
+            const typ = document.getElementById('editTyp').value;
+            const kwota = parseFloat(document.getElementById('editKwota').value);
+            const status = document.getElementById('editStatus').value;
+            const notatka = document.getElementById('editNotatka').value;
+
+            try {
+                const response = await fetch(`${API_URL}/api/fines/${currentEditingId}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        numer, typ, kwota, status, notatka
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.Sukces) {
+                    showAlert('✅ Mandat zaktualizowany', 'success');
+                    document.getElementById('editModal').classList.remove('show');
+                    loadFines();
+                } else {
+                    showAlert('❌ ' + data.Wiadomosc, 'error');
+                }
+            } catch (error) {
+                showAlert('❌ Błąd: ' + error.message, 'error');
+            }
+        });
+
+        document.getElementById('deleteBtn').addEventListener('click', async () => {
+            if (!confirm('❓ Czy na pewno chcesz usunąć ten mandat?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/api/fines/${currentEditingId}`, {
+                    method: 'DELETE'
+                });
+
+                const data = await response.json();
+                
+                if (data.Sukces) {
+                    showAlert('✅ Mandat usunięty', 'success');
+                    document.getElementById('editModal').classList.remove('show');
+                    loadFines();
+                } else {
+                    showAlert('❌ ' + data.Wiadomosc, 'error');
+                }
+            } catch (error) {
+                showAlert('❌ Błąd: ' + error.message, 'error');
+            }
+        });
+
+        // ===== MODAL SZCZEGÓŁÓW =====
+        function showDetails(fineId) {
+            const fine = allFines.find(f => (f.id || f.Id) === fineId);
+            
+            if (!fine) {
+                showAlert('❌ Raport nie znaleziony', 'error');
+                return;
+            }
+
+            const imie = fine.imie || fine.Imie;
+            const nazwisko = fine.nazwisko || fine.Nazwisko;
+            const pesel = fine.pesel || fine.Pesel;
+            const numer = fine.numer || fine.numerMandata || fine.NumerMandata || '-';
+            const typ = fine.typ || fine.typMandata || fine.TypMandata || '-';
+            const kwota = fine.kwota || fine.kwotaMandatu || fine.KwotaMandatu || 0;
+            const status = fine.status || fine.statusMandata || fine.StatusMandata || 'Nowy';
+            const notatka = fine.notatka || fine.Notatka || 'Brak notatki';
+            const operatorImie = fine.operatorImie || fine.OperatorImie || '';
+            const operatorNazwisko = fine.operatorNazwisko || fine.OperatorNazwisko || '';
+            const operatorFullName = operatorImie && operatorNazwisko 
+                ? `${operatorImie} ${operatorNazwisko}` 
+                : fine.operator || fine.Operator || '-';
+
+            const dataBirth = new Date(fine.dataUrodzenia || fine.DataUrodzenia);
+            const plec = fine.plec || fine.Plec;
+
+            let html = `
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Imię i Nazwisko</span>
+                        <span class="info-value">${imie} ${nazwisko}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">PESEL</span>
+                        <span class="info-value">${pesel}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Data Ur.</span>
+                        <span class="info-value">${dataBirth.toLocaleDateString('pl-PL')}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Płeć</span>
+                        <span class="info-value">${plec === 'M' ? 'Mężczyzna' : plec === 'K' ? 'Kobieta' : plec}</span>
+                    </div>
+                </div>
+
+                <h3 style="margin: 20px 0 15px; color: var(--primary-color); border-bottom: 2px solid var(--border-color); padding-bottom: 10px;">💰 Informacje o Mandacie</h3>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Numer Mandatu</span>
+                        <span class="info-value">${numer}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Typ Mandatu</span>
+                        <span class="info-value">${typ}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Kwota</span>
+                        <span class="info-value money-value">${formatMoney(kwota)}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Status</span>
+                        <span class="info-value">${getStatusBadge(status)}</span>
+                    </div>
+                </div>
+
+                <h3 style="margin: 20px 0 15px; color: var(--primary-color); border-bottom: 2px solid var(--border-color); padding-bottom: 10px;">📝 Notatka</h3>
+                <div style="background: var(--light-bg); padding: 15px; border-radius: 8px; border-left: 4px solid var(--primary-color); white-space: pre-wrap; word-wrap: break-word;">
+                    ${notatka}
+                </div>
+
+                <h3 style="margin: 20px 0 15px; color: var(--primary-color); border-bottom: 2px solid var(--border-color); padding-bottom: 10px;">ℹ️ Informacje Dodatkowe</h3>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Data Raportu</span>
+                        <span class="info-value">${formatDate(fine.data || fine.dataRaportu || fine.DataRaportu)}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Imię i Nazwisko Wystawiającego</span>
+                        <span class="info-value">${operatorFullName}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">ID Raportu</span>
+                        <span class="info-value" style="font-family: monospace; font-size: 12px;">${fine.id || fine.Id}</span>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('detailsContent').innerHTML = html;
+            
+            document.getElementById('editFromDetailsBtn').onclick = () => {
+                document.getElementById('detailsModal').classList.remove('show');
+                setTimeout(() => showEditModal(fine.id || fine.Id), 300);
+            };
+
+            document.getElementById('printFromDetailsBtn').onclick = () => {
+                printToPDF(fine.id || fine.Id);
+            };
+
+            document.getElementById('detailsModal').classList.add('show');
+        }
+
+        // ===== DRUKOWANIE PDF =====
+        function printToPDF(fineId) {
+            const fine = allFines.find(f => (f.id || f.Id) === fineId);
+            
+            if (!fine) {
+                showAlert('❌ Mandat nie znaleziony', 'error');
+                return;
+            }
+
+            const imie = fine.imie || fine.Imie || '-';
+            const nazwisko = fine.nazwisko || fine.Nazwisko || '-';
+            const pesel = fine.pesel || fine.Pesel || '-';
+            const dataUr = fine.dataUrodzenia || fine.DataUrodzenia || 'Brak danych';
+            const plec = fine.plec || fine.Plec || '-';
+            const numer = fine.numer || fine.numerMandata || fine.Numer || fine.NumerMandata || '-';
+            const typ = fine.typ || fine.typMandata || fine.Typ || fine.TypMandata || '-';
+            const kwota = fine.kwota || fine.kwotaMandatu || fine.Kwota || fine.KwotaMandatu || 0;
+            const status = fine.status || fine.statusMandata || fine.Status || fine.StatusMandata || 'Nowy';
+            const notatka = fine.notatka || fine.Notatka || 'Brak notatek';
+            const operatorImie = fine.operatorImie || fine.OperatorImie || '';
+            const operatorNazwisko = fine.operatorNazwisko || fine.OperatorNazwisko || '';
+            const operatorFullName = operatorImie && operatorNazwisko 
+                ? `${operatorImie} ${operatorNazwisko}` 
+                : fine.operator || fine.Operator || '-';
+            const dataRaportu = fine.data || fine.dataRaportu || fine.Data || fine.DataRaportu || new Date().toLocaleString('pl-PL');
+
+            // Generuj dynamiczny HTML dla druku
+            const htmlContent = `
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raport Mandatu - ${numer}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: white;
+            color: #333;
+            padding: 40px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        .header {
+            border-bottom: 3px solid #2196F3;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #2196F3;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .content {
+            margin-bottom: 40px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            background: #f5f5f5;
+            padding: 12px 15px;
+            border-left: 4px solid #2196F3;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .grid-full {
+            grid-column: 1 / -1;
+        }
+
+        .field {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 6px;
+            background: #fafafa;
+        }
+
+        .field-label {
+            font-weight: bold;
+            color: #2196F3;
+            font-size: 13px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .field-value {
+            font-size: 16px;
+            color: #333;
+            word-break: break-word;
+        }
+
+        .notes {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .notes-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 8px;
+        }
+
+        .notes-content {
+            color: #856404;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .status-paid {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        .status-unpaid {
+            background: #ffcdd2;
+            color: #c62828;
+        }
+
+        .status-pending {
+            background: #ffe0b2;
+            color: #e65100;
+        }
+
+        .status-new {
+            background: #bbdefb;
+            color: #1565c0;
+        }
+
+        .footer {
+            border-top: 2px solid #ddd;
+            padding-top: 20px;
+            margin-top: 40px;
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .footer-date {
+            margin-bottom: 10px;
+        }
+
+        .btn-group {
+            text-align: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-print {
+            background: #2196F3;
+            color: white;
+        }
+
+        .btn-print:hover {
+            background: #1976D2;
+        }
+
+        .btn-back {
+            background: #999;
+            color: white;
+        }
+
+        .btn-back:hover {
+            background: #666;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+            }
+            .btn-group {
+                display: none;
+            }
+            .footer {
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            body {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 Raport Mandatu</h1>
+            <p>System Zarządzania Mandatami</p>
+        </div>
+
+        <div class="content">
+            <!-- DANE OSOBOWE -->
+            <div class="section">
+                <div class="section-title">👤 Dane Osobowe</div>
+                <div class="grid">
+                    <div class="field">
+                        <div class="field-label">Imię i Nazwisko</div>
+                        <div class="field-value">${imie} ${nazwisko}</div>
+                    </div>
+                    <div class="field">
+                        <div class="field-label">PESEL</div>
+                        <div class="field-value">${pesel}</div>
+                    </div>
+                    <div class="field">
+                        <div class="field-label">Data Urodzenia</div>
+                        <div class="field-value">${new Date(dataUr).toLocaleDateString('pl-PL')}</div>
+                    </div>
+                    <div class="field">
+                        <div class="field-label">Płeć</div>
+                        <div class="field-value">${plec === 'M' ? 'Mężczyzna' : plec === 'K' ? 'Kobieta' : plec}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INFORMACJE O MANDACIE -->
+            <div class="section">
+                <div class="section-title">💰 Informacje o Mandacie</div>
+                <div class="grid">
+                    <div class="field">
+                        <div class="field-label">Numer Mandatu</div>
+                        <div class="field-value">${numer}</div>
+                    </div>
+                    <div class="field">
+                        <div class="field-label">Typ Mandatu</div>
+                        <div class="field-value">${typ}</div>
+                    </div>
+                    <div class="field">
+                        <div class="field-label">Kwota</div>
+                        <div class="field-value" style="color: #e91e63; font-weight: bold; font-size: 18px;">
+                            ${kwota.toLocaleString('pl-PL', { style: 'currency', currency: 'PLN' })}
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="field-label">Status</div>
+                        <div class="field-value">
+                            <span class="status-badge ${status === 'Zapłacony' ? 'status-paid' : status === 'Nie zapłacony' ? 'status-unpaid' : status === 'Wysłany' ? 'status-pending' : 'status-new'}">
+                                ${status}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field grid-full">
+                        <div class="field-label">Imię i Nazwisko Wystawiającego</div>
+                        <div class="field-value">${operatorFullName}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NOTATKI -->
+            <div class="section">
+                <div class="notes">
+                    <div class="notes-title">📝 Notatki</div>
+                    <div class="notes-content">${notatka}</div>
+                </div>
+            </div>
+
+            <!-- INFORMACJE DODATKOWE -->
+            <div class="section">
+                <div class="section-title">📊 Informacje Dodatkowe</div>
+                <div class="grid">
+                    <div class="field">
+                        <div class="field-label">ID Raportu</div>
+                        <div class="field-value" style="font-family: monospace; font-size: 12px;">${fine.id || fine.Id || '-'}</div>
+                    </div>
+                    <div class="field">
+                        <div class="field-label">Data Raportu</div>
+                        <div class="field-value">${new Date(dataRaportu).toLocaleString('pl-PL')}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-date">Wygenerowano: ${new Date().toLocaleString('pl-PL')}</div>
+            <div>© System Zarządzania Mandatami</div>
+        </div>
+    </div>
+
+    <div class="btn-group">
+        <button class="btn btn-print" onclick="window.print()">🖨️ Drukuj / Zapisz PDF</button>
+        <button class="btn btn-back" onclick="window.history.back()">⬅️ Wróć</button>
+    </div>
+</body>
+</html>
+            `;
+
+            // Otwórz w nowej karcie
+            const newWindow = window.open('', '_blank');
+            newWindow.document.write(htmlContent);
+            newWindow.document.close();
+        }
+
+        document.getElementById('closeDetailsModal').addEventListener('click', () => {
+            document.getElementById('detailsModal').classList.remove('show');
+        });
+
+        document.getElementById('closeDetailsBtn').addEventListener('click', () => {
+            document.getElementById('detailsModal').classList.remove('show');
+        });
+
+        // ===== EKSPORT I USUWANIE =====
+        document.getElementById('refreshBtn').addEventListener('click', () => {
+            loadFines();
+        });
+
+        document.getElementById('refreshStatsBtn').addEventListener('click', () => {
+            loadStats();
+        });
+
+        document.getElementById('exportBtn').addEventListener('click', () => {
+            if (filteredFines.length === 0) {
+                showAlert('❌ Brak danych do eksportu', 'error');
+                return;
+            }
+
+            let csv = 'PESEL,Imię,Nazwisko,Numer Mandatu,Typ,Kwota,Status,Data\n';
+            
+            filteredFines.forEach(fine => {
+                const pesel = fine.pesel || fine.Pesel;
+                const imie = fine.imie || fine.Imie;
+                const nazwisko = fine.nazwisko || fine.Nazwisko;
+                const numer = fine.numer || fine.numerMandata || fine.NumerMandata || '-';
+                const typ = fine.typ || fine.typMandata || fine.TypMandata || '-';
+                const kwota = fine.kwota || fine.kwotaMandatu || fine.KwotaMandatu || 0;
+                const status = fine.status || fine.statusMandata || fine.StatusMandata;
+                const data = formatDate(fine.data || fine.dataRaportu || fine.DataRaportu);
+
+                csv += `"${pesel}","${imie}","${nazwisko}","${numer}","${typ}",${kwota},"${status}","${data}"\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            
+            link.setAttribute('href', url);
+            link.setAttribute('download', `mandaty_${new Date().toISOString().split('T')[0]}.csv`);
+            link.style.visibility = 'hidden';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            showAlert('✅ Plik eksportowany', 'success');
+        });
+
+        document.getElementById('deleteAllBtn').addEventListener('click', async () => {
+            if (selectedFines.size === 0) {
+                showAlert('❌ Wybierz mandaty do usunięcia', 'error');
+                return;
+            }
+
+            if (!confirm(`❓ Czy na pewno chcesz usunąć ${selectedFines.size} mandatów?`)) {
+                return;
+            }
+
+            try {
+                for (const id of selectedFines) {
+                    await fetch(`${API_URL}/api/fines/${id}`, {
+                        method: 'DELETE'
+                    });
+                }
+                
+                showAlert(`✅ Usunięto ${selectedFines.size} mandatów`, 'success');
+                selectedFines.clear();
+                loadFines();
+            } catch (error) {
+                showAlert('❌ Błąd: ' + error.message, 'error');
+            }
+        });
+
+        // ===== INICJALIZACJA =====
+        loadFines();
+    </script>
+</body>
+</html>
