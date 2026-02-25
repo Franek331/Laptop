@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RozpoznawanieMatwarzy</name>
+    </assembly>
+    <members>
+        <member name="T:RozpoznawanieMatwarzy.Services.RaportHelper">
+            <summary>
+            Helper do przekazywania danych między ViewModelami
+            </summary>
+        </member>
+        <member name="M:RozpoznawanieMatwarzy.Services.SerwisRaportu.UstawToken(System.String)">
+            <summary>
+            Zapisz raport lokalnie
+            </summary>
+            
+        </member>
+        <member name="M:RozpoznawanieMatwarzy.Services.SerwisRaportu.WyslijRaportAsync(RozpoznawanieMatwarzy.Models.Raport)">
+            <summary>
+            Wyślij raport do systemu (zapisz w bazie + wyślij do notyfikacji)
+            </summary>
+        </member>
+        <member name="M:RozpoznawanieMatwarzy.Services.SerwisRaportu.PobierzRaportyAsync(System.String)">
+            <summary>
+            Pobierz historię raportów dla osoby
+            </summary>
+        </member>
+        <member name="M:RozpoznawanieMatwarzy.Services.SerwisRaportu.PobierzRaportAsync(System.String)">
+            <summary>
+            Pobierz raport po ID
+            </summary>
+        </member>
+        <member name="M:RozpoznawanieMatwarzy.Services.SerwisRaportu.UsunRaportAsync(System.String)">
+            <summary>
+            Usuń raport
+            </summary>
+        </member>
+        <member name="M:RozpoznawanieMatwarzy.Services.SerwisRaportu.DebugLog(System.String)">
+            <summary>
+            Debugowanie - wyświetl w Output
+            </summary>
+        </member>
+        <member name="M:RozpoznawanieMatwarzy.ViewModels.ModelRaportu.ZaladujDaneOperatora">
+            <summary>
+            Załaduj dane zalogowanego operatora z SerwisAutoryzacji
+            </summary>
+        </member>
+        <member name="M:RozpoznawanieMatwarzy.ViewModels.ModelRaportu.PobierzDaneOperatoraZAPI">
+            <summary>
+            Pobierz dane operatora z API verify-token (fallback)
+            </summary>
+        </member>
+        <member name="M:RozpoznawanieMatwarzy.ViewModels.ModelRaportu.GenerujNumerMandata">
+            <summary>
+            Generuje unikalny numer mandatu w zakresie 1-10,000,000,000
+            </summary>
+        </member>
+        <member name="M:RozpoznawanieMatwarzy.ViewModels.ModelRaportu.GenerujNowyNumerMandata">
+            <summary>
+            Generuje nowy numer mandatu na żądanie użytkownika
+            </summary>
+        </member>
+        <member name="M:RozpoznawanieMatwarzy.ViewModels.ModelRaportu.WczytajDaneOsoby(System.Object,Microsoft.Maui.Controls.ImageSource)">
+            <summary>
+            Wczytaj dane rozpoznanej osoby
+            </summary>
+        </member>
+        <member name="M:RozpoznawanieMatwarzy.ViewModels.ModelRaportu.GenerujRaport">
+            <summary>
+            Wygeneruj obiekt Raport
+            </summary>
+        </member>
+        <member name="M:RozpoznawanieMatwarzy.ViewModels.ModelRaportu.ZapiszRaport">
+            <summary>
+            Zapisz raport lokalnie
+            </summary>
+        </member>
+        <member name="M:RozpoznawanieMatwarzy.ViewModels.ModelRaportu.WyslijRaport">
+            <summary>
+            Wyślij raport do systemu
+            </summary>
+        </member>
+        <member name="M:RozpoznawanieMatwarzy.ViewModels.ModelRaportu.Wyczysc">
+            <summary>
+            Wyczyść formularz
+            </summary>
+        </member>
+        <member name="T:RozpoznawanieMatwarzy.Resource">
+            <summary>
+            Android Resource Designer class.
+            Exposes the Android Resource designer assembly into the project Namespace.
+            </summary>
+        </member>
+    </members>
+</doc>

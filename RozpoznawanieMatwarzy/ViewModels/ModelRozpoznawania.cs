@@ -458,7 +458,7 @@ namespace RozpoznawanieMatwarzy.ViewModels
             {
                 using (var httpClient = new HttpClient())
                 {
-                    var baseUrl = "http://192.168.88.253:5000";
+                    var baseUrl = Stale.URL_BAZY;
                     var response = await httpClient.GetAsync($"{baseUrl}/api/faces/{pesel}");
 
                     if (!response.IsSuccessStatusCode)

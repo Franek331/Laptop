@@ -16,7 +16,7 @@ namespace RozpoznawanieMatwarzy.Services
             _httpClient = new HttpClient
             {
                 BaseAddress = new Uri(Stale.URL_BAZY),
-                Timeout = TimeSpan.FromSeconds(30)
+                Timeout = TimeSpan.FromSeconds(60)
             };
             
             _serwisAutoryzacji = new SerwisAutoryzacji();

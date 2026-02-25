@@ -8,7 +8,7 @@ namespace RozpoznawanieMatwarzy
 {
     public class Stale
     {
-        public const string URL_BAZY = "http://192.168.88.253:5000";
+        public const string URL_BAZY = "http://10.200.212.243:5000";
 
         public const string ENDPOINT_REJESTRACJA = "/api/register";
         public const string ENDPOINT_ROZPOZNANIE = "/api/recognize";

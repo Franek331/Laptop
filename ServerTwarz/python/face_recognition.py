@@ -190,10 +190,42 @@ class FaceRecognizer:
                 return encoding
             else:
                 print(f"❌ No face detected in image")
+                # ⭐ FALLBACK: Spróbuj z enforce_detection=False
+                print(f"🔄 Retrying with enforce_detection=False...")
+                try:
+                    embedding = DeepFace.represent(
+                        img_path=full_path,
+                        model_name=model_name,
+                        enforce_detection=False,  # ← Klucz!
+                        detector_backend=DETECTOR_BACKEND
+                    )
+                    if embedding and len(embedding) > 0:
+                        encoding = embedding[0]['embedding']
+                        print(f"✅ Encoding extracted successfully with fallback ({len(encoding)} dimensions)")
+                        return encoding
+                except Exception as fallback_e:
+                    print(f"❌ Fallback also failed: {str(fallback_e)}")
+                
                 return None
 
         except Exception as e:
             print(f"❌ Error extracting encoding with {model_name}: {str(e)}")
+            # ⭐ FALLBACK NA EXCEPTION
+            print(f"🔄 Retrying with enforce_detection=False...")
+            try:
+                embedding = DeepFace.represent(
+                    img_path=full_path,
+                    model_name=model_name,
+                    enforce_detection=False,
+                    detector_backend=DETECTOR_BACKEND
+                )
+                if embedding and len(embedding) > 0:
+                    encoding = embedding[0]['embedding']
+                    print(f"✅ Encoding extracted successfully with fallback ({len(encoding)} dimensions)")
+                    return encoding
+            except Exception as fallback_e:
+                print(f"❌ Fallback also failed: {str(fallback_e)}")
+            
             return None
 
     def register_person(self, pesel, photo_path):
@@ -247,17 +279,25 @@ class FaceRecognizer:
 
     def recognize_face(self, image_path):
         """
-        Rozpoznaj twarz ze zdjęcia - wielomodelowe porównanie + analiza cech
-        Zwraca: {found: bool, pesel, name, confidence, features, ...}
+        ⭐ NAPRAWIONA WERSJA - ZWRACA PIERWSZY MATCH ZARAZ
         
-        ⭐ WAŻNE: Ta funkcja teraz obsługuje kompatybilne wymiary!
+        Rozpoznaj twarz ze zdjęcia - wielomodelowe porównanie + analiza cech
+        Zwraca: {Rozpoznano: bool, pesel, name, confidence, features, ...}
+        
+        Strategia:
+        1. Model 1 (Primary) - najsurowszy, zwraca na pierwszy match
+        2. Jeśli Model 1 fail → Model 2 (Secondary)
+        3. Jeśli Model 2 fail → Model 3 (Tertiary)
+        4. Jeśli wszystkie fail → "Nie rozpoznano"
         """
         try:
-            print(f"\n🔍 Recognizing face from: {image_path}")
-
             # Normalizuj ścieżkę
             full_path = self._normalize_path(image_path)
 
+            print(f"\n{'=' * 70}")
+            print(f"🔍 RECOGNIZE FACE ENDPOINT")
+            print(f"{'=' * 70}")
+            print(f"Photo Path: {image_path}")
             print(f"📁 Full path: {full_path}")
             print(f"✅ File exists: {os.path.isfile(full_path)}")
 
@@ -274,11 +314,13 @@ class FaceRecognizer:
             # ⭐ WYCIĄGNIJ CECHY Z NIEZNANEGO ZDJĘCIA
             query_features = None
             if FEATURE_EXTRACTION_ENABLED:
+                print(f"👁️  Analyzing facial features...")
                 query_features = self.feature_analyzer.analyze_face_features(full_path)
 
-            # Spróbuj z każdym modelem po kolei
-            best_result = None
-            best_score = 0
+            # ═══════════════════════════════════════════════════════════════════════
+            # ⭐ KLUCZOWA ZMIANA: Próbuj modele po kolei
+            # ZWRACA ZARAZ NA PIERWSZY MATCH!
+            # ═══════════════════════════════════════════════════════════════════════
 
             for model_config in self.models:
                 model_name = model_config['name']
@@ -287,11 +329,11 @@ class FaceRecognizer:
 
                 print(f"\n🔄 Trying model: {model_name} (threshold: {threshold}, dims: {expected_dims})")
 
-                # Wyciągnij encoding z WALIDACJĄ wymiarów
+                # Wyciągnij encoding
                 query_encoding = self.extract_face_encoding(full_path, model_name, expected_dims)
                 if query_encoding is None:
                     print(f"   ⚠️ Could not extract encoding with {model_name}")
-                    continue
+                    continue  # Spróbuj następny model
 
                 # Pobierz wszystkie encodingi z bazy
                 stored_encodings = get_all_face_encodings()
@@ -300,6 +342,7 @@ class FaceRecognizer:
                     print("   ⚠️ No faces registered in database")
                     continue
 
+                print(f"   📊 Loaded {len(stored_encodings)} encodings from face_encodings table")
                 print(f"   🔎 Comparing with {len(stored_encodings)} stored faces...")
 
                 best_match = None
@@ -308,7 +351,6 @@ class FaceRecognizer:
                 # Porównaj z każdym encodingiem w bazie
                 for pesel, stored_encoding in stored_encodings.items():
                     try:
-                        # ⭐ OBSŁUGA RÓŻNYCH WYMIARÓW
                         distance = self.calculate_distance(
                             np.array(query_encoding),
                             np.array(stored_encoding)
@@ -319,13 +361,12 @@ class FaceRecognizer:
                         if distance < best_distance:
                             best_distance = distance
                             best_match = pesel
-                    
+
                     except ValueError as e:
-                        # Wymiary się nie zgadzają - przejdź do kolejnego
                         print(f"      ⚠️ {pesel}: Dimension mismatch - skipping")
                         continue
 
-                # Sprawdź czy dystans jest poniżej progu dla tego modelu
+                # ⭐ KLUCZOWA ZMIANA: ZWRÓĆ NA PIERWSZY MATCH!
                 if best_match and best_distance < threshold:
                     print(f"\n   ✅ MATCH FOUND with {model_name}!")
                     print(f"      PESEL: {best_match}")
@@ -374,30 +415,32 @@ class FaceRecognizer:
                         "Wiadomosc": f"Rozpoznano: {person['first_name']} {person['last_name']}"
                     }
 
-                    if combined_score > best_score:
-                        best_score = combined_score
-                        best_result = result
+                    # ⭐ NAJWAŻNIEJSZE: Zwróć ZARAZ!
+                    print(f"\n✅ Returning result from model {model_name}")
+                    print(f"{'=' * 70}\n")
+                    return result
 
                 else:
-                    print(f"\n   ❌ NO MATCH with {model_name}")
+                    print(f"   ❌ NO MATCH with {model_name}")
                     if best_match:
                         print(f"      Best distance: {best_distance:.4f} (threshold: {threshold})")
                     else:
-                        print(f"      No matches found")
+                        print(f"      No matches found in database")
 
-            # Zwróć najlepszy wynik ze wszystkich modeli
-            if best_result:
-                return best_result
-            else:
-                return {
-                    "Rozpoznano": False,
-                    "Pesel": None,
-                    "Imie": None,
-                    "Nazwisko": None,
-                    "Pewnosc": 0,
-                    "CechyWynik": 0,
-                    "Wiadomosc": "Twarz nie została rozpoznana"
-                }
+            # ⭐ Jeśli ŻADEN model nie znalazł matcha
+            print(f"\n{'=' * 70}")
+            print(f"❌ NO MATCH WITH ANY MODEL")
+            print(f"{'=' * 70}\n")
+            
+            return {
+                "Rozpoznano": False,
+                "Pesel": None,
+                "Imie": None,
+                "Nazwisko": None,
+                "Pewnosc": 0,
+                "CechyWynik": 0,
+                "Wiadomosc": "Twarz nie została rozpoznana - brak dopasowania z żadnym modelem"
+            }
 
         except Exception as e:
             print(f"❌ Error recognizing face: {str(e)}")

@@ -139,7 +139,7 @@
                     <BoxView Color="#DDD" HeightRequest="1" Margin="0,10,0,10" />
 
                     <!-- Info -->
-                    <Label Text="💡 Wskazówka: Gdy osoba jest POSZUKIWANA, wynik pojawi się na CZERWONO" 
+                    <Label Text="" 
                            FontSize="11" TextColor="#FF9800" FontAttributes="Italic"
                            HorizontalOptions="Center" Margin="0,5,0,0" />
 
@@ -157,7 +157,7 @@
                         Padding="15"
                         IsEnabled="{Binding CzyMoznaOtworzycRaport}" />
 
-                    <Label Text="💡 Wskazówka: Kliknij RAPORT aby utworzyć dokument z danymi rozpoznanej osoby" 
+                    <Label Text="" 
                        FontSize="11" 
                        TextColor="#FF5722" 
                        FontAttributes="Italic"

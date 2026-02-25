@@ -460,7 +460,7 @@ app.post('/api/register', upload.single('photo'), async (req, res) => {
           pesel: pesel, 
           photo_path: photoPath 
         }),
-        timeout: 120000
+        timeout: 1200000
       });
 
       const pythonResult = await pythonResponse.json();
@@ -518,7 +518,7 @@ app.post('/api/recognize', upload.single('photo'), async (req, res) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ photo_path: photoPath }),
-        timeout: 120000  // 120 sekund (zamiast 30)
+        timeout: 1200000  // 120 sekund (zamiast 30)
       });
 
       const result = await pythonResponse.json();
